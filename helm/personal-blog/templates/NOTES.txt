@@ -1,0 +1,11 @@
+1. Get the application URL by running these commands:
+{{- if .Values.ingress.enabled }}
+  kubectl get ingress {{ include "personal-blog.fullname" . }} -n {{ .Release.Namespace }}
+{{- else if .Values.gateway.enabled }}
+  kubectl get httproute {{ include "personal-blog.fullname" . }} -n {{ .Release.Namespace }}
+{{- else }}
+  kubectl port-forward svc/{{ include "personal-blog.fullname" . }} 8080:{{ .Values.service.port }} -n {{ .Release.Namespace }}
+{{- end }}
+
+2. Validate pod health:
+  kubectl get pods -n {{ .Release.Namespace }} -l app.kubernetes.io/instance={{ .Release.Name }}

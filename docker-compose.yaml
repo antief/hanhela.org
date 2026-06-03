@@ -1,0 +1,13 @@
+services:
+  site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        HUGO_BASEURL: "http://localhost:8080/"
+    image: personal-site:local
+    ports:
+      - "8080:8080"
+    read_only: true
+    tmpfs:
+      - /tmp

@@ -1,0 +1,16 @@
+apiVersion: v2
+name: personal-blog
+description: A reusable Helm chart for deploying a Hugo-generated personal static site
+version: 0.1.0
+appVersion: "0.1.0"
+type: application
+keywords:
+  - hugo
+  - static-site
+  - nginx
+  - kubernetes
+home: https://hanhela.org
+sources:
+  - https://github.com/antief/blog
+maintainers:
+  - name: Antti Hanhela

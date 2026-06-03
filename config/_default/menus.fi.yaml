@@ -1,0 +1,10 @@
+main:
+  - name: Minusta
+    pageRef: /about
+    weight: 10
+  - name: Kirjoitukset
+    pageRef: /posts
+    weight: 20
+  - name: CV
+    pageRef: /cv
+    weight: 30

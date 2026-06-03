@@ -1,0 +1,20 @@
+{{ $mainSections := .Site.Params.mainSections | default (slice "posts") }}
+{{ $highlightLimit := .Site.Params.homepage.showHighlightItems | default 3 }}
+{{ $highlights := where .Site.RegularPages "Params.highlight" true }}
+{{ $highlights = sort $highlights "Params.highlightWeight" "asc" }}
+{{ if eq (len $highlights) 0 }}
+  {{ $highlights = sort (where .Site.RegularPages "Type" "in" $mainSections) "Weight" "asc" }}
+{{ end }}
+
+{{ if and (.Site.Params.homepage.showHighlights | default true) (gt (len $highlights) 0) }}
+  <section class="mt-8">
+    <h2 class="mt-8 text-2xl font-extrabold mb-10">
+      {{ i18n "homepage.highlights" | default "Highlights" }}
+    </h2>
+    <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+      {{ range first $highlightLimit $highlights }}
+        {{ partial "article-link/card.html" . }}
+      {{ end }}
+    </section>
+  </section>
+{{ end }}

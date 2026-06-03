@@ -1,0 +1,17 @@
+{{ if .Site.Params.homepage.showRecent | default false }}
+  {{ $mainSections := .Site.Params.mainSections | default (slice "posts") }}
+  {{ $recentLimit := .Site.Params.homepage.showRecentItems | default 6 }}
+  {{ $recent := where (where .Site.RegularPages "Type" "in" $mainSections) "Params.highlight" "ne" true }}
+  {{ if gt (len $recent) 0 }}
+    <section class="mt-12">
+      <h2 class="mt-8 text-2xl font-extrabold mb-10">
+        {{ i18n "homepage.recent" | default "Recent" }}
+      </h2>
+      <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        {{ range first $recentLimit $recent }}
+          {{ partial "article-link/card.html" . }}
+        {{ end }}
+      </section>
+    </section>
+  {{ end }}
+{{ end }}

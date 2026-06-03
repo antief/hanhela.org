@@ -1,0 +1,66 @@
+colorScheme: "gruvbox-orange"
+defaultAppearance: "dark"
+autoSwitchAppearance: true
+enableSearch: true
+enableCodeCopy: true
+mainSections:
+  - posts
+enableImageLazyLoading: true
+defaultBackgroundImage: null
+
+header:
+  layout: basic
+
+highlightCurrentMenuArea: true
+
+footer:
+  showCopyright: false
+  showThemeAttribution: true
+  showAppearanceSwitcher: true
+  showScrollToTop: true
+
+homepage:
+  layout: custom
+  showHighlights: true
+  showHighlightItems: 3
+  showRecent: false
+  showRecentItems: 6
+  showMoreLink: false
+  showMoreLinkDest: "/posts/"
+  cardView: true
+  cardViewScreenWidth: false
+  layoutBackgroundBlur: false
+
+article:
+  showDate: true
+  showAuthor: true
+  showReadingTime: true
+  showWordCount: true
+  showTableOfContents: true
+  showTaxonomies: true
+
+list:
+  showBreadcrumbs: false
+  showSummary: false
+  showTableOfContents: false
+  showTaxonomies: true
+  cardView: true
+  cardViewScreenWidth: false
+  groupByYear: false
+
+schema:
+  type: Person
+  name: "Antti Hanhela"
+  url: "https://hanhela.org"
+  sameAs:
+    - "https://github.com/antief"
+  jobTitle: "DevOps and Cloud Native enthusiast"
+
+author:
+  name: "Antti Hanhela"
+  image: "img/blowfish-avatar.png"
+  headline: "DevOps and Cloud Native enthusiast"
+  bio: "Notes and practical writeups about Kubernetes, GitOps, Linux and cloud native technologies."
+  links:
+    - github: "https://github.com/antief"
+    - linkedin: "https://www.linkedin.com/in/your-profile/"

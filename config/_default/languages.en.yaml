@@ -1,0 +1,30 @@
+locale: "en"
+label: "English"
+weight: 1
+title: "hanhela.org"
+
+params:
+  displayName: "EN"
+  isoCode: "en"
+  rtl: false
+  dateFormat: "2 January 2006"
+  #logo: "img/logo.svg"
+  description: "Personal site about Kubernetes, GitOps, Linux and cloud native infrastructure."
+  author:
+    name: "Antti Hanhela"
+    image: "img/blowfish-avatar.png"
+    headline: "Career changer focused on cloud native, Linux and Kubernetes environments."
+    bio: "Notes and practical writeups about Kubernetes, GitOps, Linux and cloud native infrastructure."
+    links:
+      - github: "https://github.com/antief"
+      - linkedin: "https://www.linkedin.com/in/your-profile/"
+  homepage:
+    layout: custom
+    showHighlights: true
+    showHighlightItems: 3
+    showRecent: false
+    showRecentItems: 6
+    showMoreLink: false
+    showMoreLinkDest: "/posts/"
+    cardView: true
+    cardViewScreenWidth: false

@@ -1,0 +1,10 @@
+main:
+  - name: About
+    pageRef: /about
+    weight: 10
+  - name: Posts
+    pageRef: /posts
+    weight: 20
+  - name: CV
+    pageRef: /cv
+    weight: 30

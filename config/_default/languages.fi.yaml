@@ -1,0 +1,30 @@
+locale: "fi"
+label: "Suomi"
+weight: 2
+title: "hanhela.org"
+
+params:
+  displayName: "FI"
+  isoCode: "fi"
+  rtl: false
+  dateFormat: "02.01.2006"
+  #logo: "img/logo.svg"
+  description: "Henkilökohtainen sivusto Kubernetes-, GitOps-, Linux- ja cloud native -aiheista."
+  author:
+    name: "Antti Hanhela"
+    image: "img/blowfish-avatar.png"
+    headline: "IT-alalle siirtyvä cloud native-, Linux- ja Kubernetes-ympäristöistä kiinnostunut tekijä."
+    bio: "Muistiinpanoja ja käytännön kirjoituksia Kubernetesista, GitOpsista, Linuxista ja cloud native -infrasta."
+    links:
+      - github: "https://github.com/antief"
+      - linkedin: "https://www.linkedin.com/in/your-profile/"
+  homepage:
+    layout: custom
+    showHighlights: true
+    showHighlightItems: 3
+    showRecent: false
+    showRecentItems: 6
+    showMoreLink: false
+    showMoreLinkDest: "/fi/posts/"
+    cardView: true
+    cardViewScreenWidth: false

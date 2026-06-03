@@ -1,0 +1,894 @@
+/* assets/css/custom.css
+ *
+ * Section map:
+ * 1. Fonts and base typography
+ * 2. Text selection
+ * 3. Search overlay colors
+ * 4. Inline code
+ * 5. Chroma syntax highlighting
+ * 6. CV and content tables
+ * 7. Profile and author social icons
+ * 8. Footer attribution and article links
+ * 9. Heading anchors
+ * 10. Header brand
+ *
+ * Keep broad theme-level color tokens in assets/css/schemes/. Keep local
+ * behavioral overrides here, especially where Blowfish defaults need to be
+ * normalized across light/dark mode or Gruvbox accent variants.
+ */
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/InterVariable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/InterVariable-Italic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* 1. Fonts and base typography */
+
+html {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 12.25pt;
+}
+
+body {
+  letter-spacing: -0.003em;
+  line-height: 1.65;
+}
+
+/* 2. Text selection */
+
+::selection {
+  background-color: rgb(var(--color-primary-700));
+  color: rgb(251, 241, 199); /* Gruvbox light bg0 */
+}
+
+html.dark ::selection {
+  background-color: rgb(var(--color-primary-400));
+  color: rgb(40, 40, 40); /* Gruvbox dark bg0 */
+}
+
+/* 3. Search overlay colors: dark Gruvbox variants */
+
+html.dark #search-wrapper {
+  background-color: rgba(29, 32, 33, 0.82); /* bg0_h */
+}
+
+html.dark #search-modal {
+  border-color: rgb(60, 56, 54); /* bg1 */
+  background-color: rgb(40, 40, 40); /* bg0 */
+  color: rgb(235, 219, 178); /* fg1 */
+}
+
+html.dark #search-modal header,
+html.dark #search-modal section {
+  background-color: transparent;
+}
+
+html.dark #search-query,
+html.dark #search-modal input[type="search"],
+html.dark #search-modal input[type="text"] {
+  color: rgb(235, 219, 178); /* fg1 */
+  caret-color: rgb(var(--color-primary-400));
+}
+
+html.dark #search-query::placeholder,
+html.dark #search-modal input[type="search"]::placeholder,
+html.dark #search-modal input[type="text"]::placeholder {
+  color: rgb(168, 153, 132); /* bg4 */
+}
+
+html.dark #search-query:focus,
+html.dark #search-modal input[type="search"]:focus,
+html.dark #search-modal input[type="text"]:focus {
+  outline: none;
+}
+
+html.dark #search-query:focus-visible,
+html.dark #search-modal input[type="search"]:focus-visible,
+html.dark #search-modal input[type="text"]:focus-visible {
+  outline: none;
+  border-color: rgb(var(--color-primary-500));
+  box-shadow: 0 0 0 1px rgb(var(--color-primary-500));
+}
+
+html.dark #search-modal button,
+html.dark #search-modal button svg,
+html.dark #search-modal .bf-icon-color-hover,
+html.dark #search-modal .bf-icon-color-hover svg,
+html.dark #close-search-button {
+  color: rgb(213, 196, 161); /* fg2 */
+}
+
+html.dark #search-modal button:hover,
+html.dark #search-modal button:focus-visible,
+html.dark #search-modal button:hover svg,
+html.dark #search-modal button:focus-visible svg,
+html.dark #close-search-button:hover,
+html.dark #close-search-button:focus-visible {
+  color: rgb(var(--color-primary-400));
+}
+
+html.dark #search-results a {
+  color: inherit;
+  background-color: transparent;
+}
+
+html.dark #search-results a:hover,
+html.dark #search-results a:focus,
+html.dark #search-results a:focus-visible {
+  background-color: rgb(50, 48, 47); /* bg0_s */
+  color: inherit;
+}
+
+/* Search result hover intentionally changes only the row background.
+ * Text colors stay stable, matching Blowfish's default search behaviour.
+ */
+html.dark #search-results .text-lg,
+html.dark #search-results h3,
+html.dark [id*="search"] h3,
+html.dark [class*="search"] h3 {
+  color: rgb(251, 241, 199); /* fg0 */
+}
+
+html.dark #search-results .text-sm,
+html.dark #search-results p,
+html.dark [id*="search"] p,
+html.dark [class*="search"] p {
+  color: rgb(213, 196, 161); /* fg2 */
+}
+
+html.dark #search-results .text-neutral-500,
+html.dark #search-results .text-neutral-400,
+html.dark [id*="search"] .text-neutral-500,
+html.dark [id*="search"] .text-neutral-400,
+html.dark [class*="search"] .text-neutral-500,
+html.dark [class*="search"] .text-neutral-400 {
+  color: rgb(168, 153, 132); /* bg4 */
+}
+
+html.dark #search-results .text-primary-500,
+html.dark [id*="search"] .text-primary-500,
+html.dark [class*="search"] .text-primary-500 {
+  color: rgb(var(--color-primary-500));
+}
+
+html.dark mark,
+html.dark .mark {
+  color: rgb(40, 40, 40); /* bg0 */
+  background-color: rgb(250, 189, 47); /* bright yellow */
+  border-radius: 0.15rem;
+  padding: 0 0.12rem;
+}
+
+/* 3. Search overlay colors: light Gruvbox variants */
+
+html:not(.dark) #search-wrapper {
+  background-color: rgba(249, 245, 215, 0.82); /* bg0_h */
+}
+
+html:not(.dark) #search-modal {
+  border-color: rgb(213, 196, 161); /* bg2 */
+  background-color: rgb(251, 241, 199); /* bg0 */
+  color: rgb(60, 56, 54); /* fg1 */
+}
+
+html:not(.dark) #search-modal header,
+html:not(.dark) #search-modal section {
+  background-color: transparent;
+}
+
+html:not(.dark) #search-query,
+html:not(.dark) #search-modal input[type="search"],
+html:not(.dark) #search-modal input[type="text"] {
+  color: rgb(60, 56, 54); /* fg1 */
+  caret-color: rgb(var(--color-primary-700));
+}
+
+html:not(.dark) #search-query::placeholder,
+html:not(.dark) #search-modal input[type="search"]::placeholder,
+html:not(.dark) #search-modal input[type="text"]::placeholder {
+  color: rgb(124, 111, 100); /* fg4 */
+}
+
+html:not(.dark) #search-query:focus,
+html:not(.dark) #search-modal input[type="search"]:focus,
+html:not(.dark) #search-modal input[type="text"]:focus {
+  outline: none;
+}
+
+html:not(.dark) #search-query:focus-visible,
+html:not(.dark) #search-modal input[type="search"]:focus-visible,
+html:not(.dark) #search-modal input[type="text"]:focus-visible {
+  outline: none;
+  border-color: rgb(var(--color-primary-600));
+  box-shadow: 0 0 0 1px rgb(var(--color-primary-600));
+}
+
+html:not(.dark) #search-modal button,
+html:not(.dark) #search-modal button svg,
+html:not(.dark) #search-modal .bf-icon-color-hover,
+html:not(.dark) #search-modal .bf-icon-color-hover svg,
+html:not(.dark) #close-search-button {
+  color: rgb(80, 73, 69); /* fg2 */
+}
+
+html:not(.dark) #search-modal button:hover,
+html:not(.dark) #search-modal button:focus-visible,
+html:not(.dark) #search-modal button:hover svg,
+html:not(.dark) #search-modal button:focus-visible svg,
+html:not(.dark) #close-search-button:hover,
+html:not(.dark) #close-search-button:focus-visible {
+  color: rgb(var(--color-primary-700));
+}
+
+html:not(.dark) #search-results a {
+  color: inherit;
+  background-color: transparent;
+}
+
+html:not(.dark) #search-results a:hover,
+html:not(.dark) #search-results a:focus,
+html:not(.dark) #search-results a:focus-visible {
+  background-color: rgb(242, 229, 188); /* bg0_s */
+  color: inherit;
+}
+
+html:not(.dark) #search-results .text-lg,
+html:not(.dark) #search-results h3,
+html:not(.dark) [id*="search"] h3,
+html:not(.dark) [class*="search"] h3 {
+  color: rgb(40, 40, 40); /* fg0 */
+}
+
+html:not(.dark) #search-results .text-sm,
+html:not(.dark) #search-results p,
+html:not(.dark) [id*="search"] p,
+html:not(.dark) [class*="search"] p {
+  color: rgb(80, 73, 69); /* fg2 */
+}
+
+html:not(.dark) #search-results .text-neutral-500,
+html:not(.dark) #search-results .text-neutral-400,
+html:not(.dark) [id*="search"] .text-neutral-500,
+html:not(.dark) [id*="search"] .text-neutral-400,
+html:not(.dark) [class*="search"] .text-neutral-500,
+html:not(.dark) [class*="search"] .text-neutral-400 {
+  color: rgb(124, 111, 100); /* fg4 */
+}
+
+html:not(.dark) #search-results .text-primary-500,
+html:not(.dark) [id*="search"] .text-primary-500,
+html:not(.dark) [class*="search"] .text-primary-500 {
+  color: rgb(var(--color-primary-700));
+}
+
+html:not(.dark) mark,
+html:not(.dark) .mark {
+  color: rgb(40, 40, 40); /* fg0 */
+  background-color: rgb(250, 189, 47); /* bright yellow */
+  border-radius: 0.15rem;
+  padding: 0 0.12rem;
+}
+
+/* 4. Inline code
+ *
+ * Inline code should read as code, not as a normal accent-colored link.
+ * Use Gruvbox background surfaces for the pill and active primary variables
+ * for the text so orange, aqua and purple variants stay aligned.
+ */
+
+html:not(.dark) .prose :not(pre) > code {
+  color: rgb(var(--color-primary-700));
+  background-color: rgb(213, 196, 161); /* Gruvbox bg2 */
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.25rem;
+  font-weight: 600;
+}
+
+html.dark .prose :not(pre) > code {
+  color: rgb(var(--color-primary-400));
+  background-color: rgb(50, 48, 47); /* Gruvbox bg0_s */
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.25rem;
+  font-weight: 600;
+}
+
+html:not(.dark) .prose :not(pre) > code::before,
+html:not(.dark) .prose :not(pre) > code::after,
+html.dark .prose :not(pre) > code::before,
+html.dark .prose :not(pre) > code::after {
+  content: "";
+}
+
+/* 5. Chroma syntax highlighting */
+
+/*
+  The accent colors intentionally use Blowfish color scheme variables.
+  Switching params.yaml colorScheme between gruvbox-orange, gruvbox-aqua and
+  gruvbox-purple now also changes the main syntax highlight accent color.
+*/
+
+html.dark {
+  --chroma-accent: var(--color-primary-400);
+  --chroma-accent-muted: var(--color-primary-500);
+}
+
+html:not(.dark) {
+  --chroma-accent: var(--color-primary-700);
+  --chroma-accent-muted: var(--color-primary-600);
+}
+
+/*
+  Hugo/Chroma emits class-based markup because markup.highlight.noClasses is false.
+  These rules color the generated .chroma token classes so fenced code blocks match
+  the site's Gruvbox appearance instead of falling back to the default text color.
+*/
+
+html.dark .highlight,
+html.dark .chroma,
+html.dark pre.chroma {
+  color: rgb(235, 219, 178);         /* fg1 */
+  background-color: rgb(40, 40, 40); /* bg0 */
+}
+
+html.dark .highlight pre,
+html.dark .highlight code,
+html.dark .chroma code {
+  color: inherit;
+  background-color: transparent;
+}
+
+html.dark .chroma .line,
+html.dark .chroma .cl {
+  color: inherit;
+}
+
+html.dark .chroma .hl {
+  background-color: rgb(60, 56, 54); /* bg1 */
+}
+
+html.dark .chroma .lnt,
+html.dark .chroma .ln {
+  color: rgb(124, 111, 100); /* fg4 / bg4 */
+}
+
+html.dark .chroma .err {
+  color: rgb(251, 73, 52); /* bright red */
+}
+
+html.dark .chroma .k,
+html.dark .chroma .kc,
+html.dark .chroma .kd,
+html.dark .chroma .kn,
+html.dark .chroma .kp,
+html.dark .chroma .kr {
+  color: rgb(var(--chroma-accent));
+}
+
+html.dark .chroma .kt,
+html.dark .chroma .nc,
+html.dark .chroma .ne,
+html.dark .chroma .nn,
+html.dark .chroma .nt {
+  color: rgb(250, 189, 47); /* bright yellow */
+}
+
+html.dark .chroma .na,
+html.dark .chroma .nb,
+html.dark .chroma .bp,
+html.dark .chroma .no,
+html.dark .chroma .nd,
+html.dark .chroma .ni,
+html.dark .chroma .nl,
+html.dark .chroma .nx,
+html.dark .chroma .py {
+  color: rgb(142, 192, 124); /* bright aqua */
+}
+
+html.dark .chroma .nf,
+html.dark .chroma .fm {
+  color: rgb(184, 187, 38); /* bright green */
+}
+
+html.dark .chroma .nv,
+html.dark .chroma .vc,
+html.dark .chroma .vg,
+html.dark .chroma .vi,
+html.dark .chroma .vm {
+  color: rgb(131, 165, 152); /* bright blue */
+}
+
+html.dark .chroma .s,
+html.dark .chroma .sa,
+html.dark .chroma .sb,
+html.dark .chroma .sc,
+html.dark .chroma .dl,
+html.dark .chroma .sd,
+html.dark .chroma .s2,
+html.dark .chroma .se,
+html.dark .chroma .sh,
+html.dark .chroma .si,
+html.dark .chroma .sx,
+html.dark .chroma .sr,
+html.dark .chroma .s1,
+html.dark .chroma .ss {
+  color: rgb(184, 187, 38); /* bright green */
+}
+
+html.dark .chroma .m,
+html.dark .chroma .mb,
+html.dark .chroma .mf,
+html.dark .chroma .mh,
+html.dark .chroma .mi,
+html.dark .chroma .il,
+html.dark .chroma .mo {
+  color: rgb(211, 134, 155); /* bright purple */
+}
+
+html.dark .chroma .o,
+html.dark .chroma .ow {
+  color: rgb(var(--chroma-accent));
+}
+
+html.dark .chroma .p {
+  color: rgb(213, 196, 161); /* fg2 */
+}
+
+html.dark .chroma .c,
+html.dark .chroma .ch,
+html.dark .chroma .cm,
+html.dark .chroma .c1,
+html.dark .chroma .cs,
+html.dark .chroma .cp,
+html.dark .chroma .cpf {
+  color: rgb(146, 131, 116); /* gray */
+  font-style: italic;
+}
+
+html.dark .chroma .gd,
+html.dark .chroma .gr,
+html.dark .chroma .gt {
+  color: rgb(251, 73, 52); /* bright red */
+}
+
+html.dark .chroma .gi {
+  color: rgb(184, 187, 38); /* bright green */
+}
+
+html.dark .chroma .gh,
+html.dark .chroma .gu {
+  color: rgb(250, 189, 47); /* bright yellow */
+  font-weight: 600;
+}
+
+html.dark .chroma .ge {
+  font-style: italic;
+}
+
+html.dark .chroma .gs {
+  font-weight: 600;
+}
+
+html.dark .chroma .go,
+html.dark .chroma .gp {
+  color: rgb(168, 153, 132); /* bg4 */
+}
+
+html.dark .chroma .w {
+  color: inherit;
+}
+
+html:not(.dark) .highlight,
+html:not(.dark) .chroma,
+html:not(.dark) pre.chroma {
+  color: rgb(60, 56, 54);             /* fg1 */
+  background-color: rgb(251, 241, 199); /* bg0 */
+}
+
+html:not(.dark) .highlight pre,
+html:not(.dark) .highlight code,
+html:not(.dark) .chroma code {
+  color: inherit;
+  background-color: transparent;
+}
+
+html:not(.dark) .chroma .line,
+html:not(.dark) .chroma .cl {
+  color: inherit;
+}
+
+html:not(.dark) .chroma .hl {
+  background-color: rgb(235, 219, 178); /* bg1 */
+}
+
+html:not(.dark) .chroma .lnt,
+html:not(.dark) .chroma .ln {
+  color: rgb(124, 111, 100); /* fg4 */
+}
+
+html:not(.dark) .chroma .err {
+  color: rgb(157, 0, 6); /* dark red */
+}
+
+html:not(.dark) .chroma .k,
+html:not(.dark) .chroma .kc,
+html:not(.dark) .chroma .kd,
+html:not(.dark) .chroma .kn,
+html:not(.dark) .chroma .kp,
+html:not(.dark) .chroma .kr {
+  color: rgb(var(--chroma-accent));
+}
+
+html:not(.dark) .chroma .kt,
+html:not(.dark) .chroma .nc,
+html:not(.dark) .chroma .ne,
+html:not(.dark) .chroma .nn,
+html:not(.dark) .chroma .nt {
+  color: rgb(181, 118, 20); /* dark yellow */
+}
+
+html:not(.dark) .chroma .na,
+html:not(.dark) .chroma .nb,
+html:not(.dark) .chroma .bp,
+html:not(.dark) .chroma .no,
+html:not(.dark) .chroma .nd,
+html:not(.dark) .chroma .ni,
+html:not(.dark) .chroma .nl,
+html:not(.dark) .chroma .nx,
+html:not(.dark) .chroma .py {
+  color: rgb(66, 123, 88); /* dark aqua */
+}
+
+html:not(.dark) .chroma .nf,
+html:not(.dark) .chroma .fm {
+  color: rgb(121, 116, 14); /* dark green */
+}
+
+html:not(.dark) .chroma .nv,
+html:not(.dark) .chroma .vc,
+html:not(.dark) .chroma .vg,
+html:not(.dark) .chroma .vi,
+html:not(.dark) .chroma .vm {
+  color: rgb(7, 102, 120); /* dark blue */
+}
+
+html:not(.dark) .chroma .s,
+html:not(.dark) .chroma .sa,
+html:not(.dark) .chroma .sb,
+html:not(.dark) .chroma .sc,
+html:not(.dark) .chroma .dl,
+html:not(.dark) .chroma .sd,
+html:not(.dark) .chroma .s2,
+html:not(.dark) .chroma .se,
+html:not(.dark) .chroma .sh,
+html:not(.dark) .chroma .si,
+html:not(.dark) .chroma .sx,
+html:not(.dark) .chroma .sr,
+html:not(.dark) .chroma .s1,
+html:not(.dark) .chroma .ss {
+  color: rgb(121, 116, 14); /* dark green */
+}
+
+html:not(.dark) .chroma .m,
+html:not(.dark) .chroma .mb,
+html:not(.dark) .chroma .mf,
+html:not(.dark) .chroma .mh,
+html:not(.dark) .chroma .mi,
+html:not(.dark) .chroma .il,
+html:not(.dark) .chroma .mo {
+  color: rgb(143, 63, 113); /* dark purple */
+}
+
+html:not(.dark) .chroma .o,
+html:not(.dark) .chroma .ow {
+  color: rgb(var(--chroma-accent));
+}
+
+html:not(.dark) .chroma .p {
+  color: rgb(80, 73, 69); /* fg2 */
+}
+
+html:not(.dark) .chroma .c,
+html:not(.dark) .chroma .ch,
+html:not(.dark) .chroma .cm,
+html:not(.dark) .chroma .c1,
+html:not(.dark) .chroma .cs,
+html:not(.dark) .chroma .cp,
+html:not(.dark) .chroma .cpf {
+  color: rgb(146, 131, 116); /* gray */
+  font-style: italic;
+}
+
+html:not(.dark) .chroma .gd,
+html:not(.dark) .chroma .gr,
+html:not(.dark) .chroma .gt {
+  color: rgb(157, 0, 6); /* dark red */
+}
+
+html:not(.dark) .chroma .gi {
+  color: rgb(121, 116, 14); /* dark green */
+}
+
+html:not(.dark) .chroma .gh,
+html:not(.dark) .chroma .gu {
+  color: rgb(181, 118, 20); /* dark yellow */
+  font-weight: 600;
+}
+
+html:not(.dark) .chroma .ge {
+  font-style: italic;
+}
+
+html:not(.dark) .chroma .gs {
+  font-weight: 600;
+}
+
+html:not(.dark) .chroma .go,
+html:not(.dark) .chroma .gp {
+  color: rgb(124, 111, 100); /* fg4 */
+}
+
+html:not(.dark) .chroma .w {
+  color: inherit;
+}
+
+
+/* 6. CV and content tables
+ *
+ * Keep the CV page close to the n9o.xyz table-oriented structure without
+ * copying logo assets or changing the site's Gruvbox palette. These rules also
+ * make occasional article tables easier to read in both appearances.
+ */
+
+.article-content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid rgb(var(--color-neutral-300));
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.article-content thead {
+  background-color: rgba(235, 219, 178, 0.52); /* Gruvbox light bg1 */
+}
+
+.article-content th,
+.article-content td {
+  vertical-align: top;
+  padding: 0.8rem 0.9rem;
+  border-bottom: 1px solid rgb(var(--color-neutral-300));
+}
+
+.article-content th {
+  color: rgb(var(--color-neutral-900));
+  font-weight: 700;
+  text-align: left;
+}
+
+.article-content tr:last-child td {
+  border-bottom: 0;
+}
+
+.article-content td {
+  color: rgb(var(--color-neutral-700));
+}
+
+html.dark .article-content table {
+  border-color: rgb(var(--color-neutral-800));
+}
+
+html.dark .article-content thead {
+  background-color: rgb(50, 48, 47); /* Gruvbox bg0_s */
+}
+
+html.dark .article-content th,
+html.dark .article-content td {
+  border-bottom-color: rgb(var(--color-neutral-800));
+}
+
+html.dark .article-content th {
+  color: rgb(var(--color-neutral-50));
+}
+
+html.dark .article-content td {
+  color: rgb(var(--color-neutral-200));
+}
+
+@media (max-width: 720px) {
+  .article-content table {
+    display: block;
+    overflow-x: auto;
+    white-space: normal;
+  }
+
+  .article-content th,
+  .article-content td {
+    min-width: 11rem;
+  }
+}
+
+
+/* 7. Profile and author social icons
+ *
+ * Resting state follows nearby profile/author text. Accent is reserved for
+ * hover/focus and comes from the active Gruvbox variant.
+ */
+main a[rel~="me"][aria-label] {
+  color: rgb(var(--color-neutral-700));
+  text-decoration-color: transparent;
+}
+
+main a[rel~="me"][aria-label] svg,
+main a[rel~="me"][aria-label] path {
+  color: currentColor;
+  fill: currentColor;
+}
+
+main a[rel~="me"][aria-label]:hover,
+main a[rel~="me"][aria-label]:focus-visible {
+  color: rgb(var(--color-primary-700));
+  text-decoration-color: transparent;
+}
+
+html.dark main a[rel~="me"][aria-label] {
+  color: rgb(var(--color-neutral-400));
+}
+
+html.dark main a[rel~="me"][aria-label]:hover,
+html.dark main a[rel~="me"][aria-label]:focus-visible {
+  color: rgb(var(--color-primary-400));
+}
+
+/* 8. Footer attribution and article links
+ *
+ * Article links stay accent-colored without a hover color shift. Footer
+ * attribution links inherit muted footer text until hover/focus.
+ */
+#site-footer p.text-xs a[href="https://gohugo.io/"],
+#site-footer p.text-xs a[href="https://blowfish.page/"] {
+  color: inherit;
+  text-decoration-line: none;
+  text-decoration-color: transparent;
+}
+
+#site-footer p.text-xs a[href="https://gohugo.io/"]:hover,
+#site-footer p.text-xs a[href="https://gohugo.io/"]:focus-visible,
+#site-footer p.text-xs a[href="https://blowfish.page/"]:hover,
+#site-footer p.text-xs a[href="https://blowfish.page/"]:focus-visible {
+  color: rgb(var(--color-primary-700));
+  text-decoration-line: none;
+  text-decoration-color: transparent;
+}
+
+html.dark #site-footer p.text-xs a[href="https://gohugo.io/"]:hover,
+html.dark #site-footer p.text-xs a[href="https://gohugo.io/"]:focus-visible,
+html.dark #site-footer p.text-xs a[href="https://blowfish.page/"]:hover,
+html.dark #site-footer p.text-xs a[href="https://blowfish.page/"]:focus-visible {
+  color: rgb(var(--color-primary-400));
+}
+
+.article-content a:not([aria-label="Anchor"]):not([rel~="me"]) {
+  color: rgb(var(--color-primary-700));
+  text-decoration-line: none;
+  text-decoration-color: transparent;
+}
+
+.article-content a:not([aria-label="Anchor"]):not([rel~="me"]):hover,
+.article-content a:not([aria-label="Anchor"]):not([rel~="me"]):focus-visible {
+  color: rgb(var(--color-primary-700));
+  text-decoration-line: none;
+  text-decoration-color: transparent;
+}
+
+html.dark .article-content a:not([aria-label="Anchor"]):not([rel~="me"]),
+html.dark .article-content a:not([aria-label="Anchor"]):not([rel~="me"]):hover,
+html.dark .article-content a:not([aria-label="Anchor"]):not([rel~="me"]):focus-visible {
+  color: rgb(var(--color-primary-400));
+}
+/* 9. Heading anchors
+ *
+ * Blowfish renders heading anchors as small # links. Keep them neutral in both
+ * modes so they read as subtle UI helpers instead of article links.
+ */
+html:not(.dark) .article-content a[aria-label="Anchor"],
+html:not(.dark) .article-content a[aria-label="Anchor"]:hover,
+html:not(.dark) .article-content a[aria-label="Anchor"]:focus,
+html:not(.dark) .article-content a[aria-label="Anchor"]:focus-visible {
+  color: rgb(var(--color-neutral-600));
+  text-decoration-line: none;
+  text-decoration-color: transparent;
+}
+
+html.dark .article-content a[aria-label="Anchor"],
+html.dark .article-content a[aria-label="Anchor"]:hover,
+html.dark .article-content a[aria-label="Anchor"]:focus,
+html.dark .article-content a[aria-label="Anchor"]:focus-visible {
+  color: rgb(var(--color-neutral-300));
+  text-decoration-line: none;
+  text-decoration-color: transparent;
+}
+
+/* 10. Header brand
+ *
+ * The scheme files keep the site title neutral. This local rule adds the
+ * CSS-only hash mark and keeps only that mark accented. The broad child
+ * selectors prevent Blowfish link hover utilities from flashing the title
+ * into the accent color.
+ */
+
+.main-menu > a:first-child,
+.main-menu > a:first-child:visited,
+.main-menu > a:first-child:hover,
+.main-menu > a:first-child:focus,
+.main-menu > a:first-child:focus-visible {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  color: rgb(var(--color-neutral-700));
+  text-decoration: none;
+}
+
+.main-menu > a:first-child *,
+.main-menu > a:first-child:visited *,
+.main-menu > a:first-child:hover *,
+.main-menu > a:first-child:focus *,
+.main-menu > a:first-child:focus-visible * {
+  color: rgb(var(--color-neutral-700));
+  text-decoration: none;
+}
+
+.main-menu > a:first-child::before,
+.main-menu > a:first-child:visited::before,
+.main-menu > a:first-child:hover::before,
+.main-menu > a:first-child:focus::before,
+.main-menu > a:first-child:focus-visible::before {
+  content: "#";
+  display: inline-block;
+  color: rgb(var(--color-primary-700));
+  opacity: 0.72;
+  font-family: inherit;
+  font-size: 1.04em;
+  font-weight: 700;
+  line-height: 1;
+  transform: translateY(0.02em);
+}
+
+html.dark .main-menu > a:first-child,
+html.dark .main-menu > a:first-child:visited,
+html.dark .main-menu > a:first-child:hover,
+html.dark .main-menu > a:first-child:focus,
+html.dark .main-menu > a:first-child:focus-visible {
+  color: rgb(var(--color-neutral-200));
+  text-decoration: none;
+}
+
+html.dark .main-menu > a:first-child *,
+html.dark .main-menu > a:first-child:visited *,
+html.dark .main-menu > a:first-child:hover *,
+html.dark .main-menu > a:first-child:focus *,
+html.dark .main-menu > a:first-child:focus-visible * {
+  color: rgb(var(--color-neutral-200));
+  text-decoration: none;
+}
+
+html.dark .main-menu > a:first-child::before,
+html.dark .main-menu > a:first-child:visited::before,
+html.dark .main-menu > a:first-child:hover::before,
+html.dark .main-menu > a:first-child:focus::before,
+html.dark .main-menu > a:first-child:focus-visible::before {
+  color: rgb(var(--color-primary-400));
+  opacity: 0.72;
+}

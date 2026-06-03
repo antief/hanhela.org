@@ -1,0 +1,205 @@
+/* assets/css/schemes/gruvbox-aqua.css */
+
+/* Gruvbox Dark Aqua for Blowfish. Uses only Gruvbox palette colors. */
+
+:root {
+  /* Neutral: Gruvbox dark background and foreground scale */
+  --color-neutral: 235, 219, 178;
+
+  --color-neutral-50: 251, 241, 199;   /* fg0 */
+  --color-neutral-100: 235, 219, 178;  /* fg1 */
+  --color-neutral-200: 213, 196, 161;  /* fg2 */
+  --color-neutral-300: 189, 174, 147;  /* fg3 */
+  --color-neutral-400: 168, 153, 132;  /* bg4 */
+  --color-neutral-500: 146, 131, 116;  /* gray */
+  --color-neutral-600: 124, 111, 100;  /* fg4 / bg4 */
+  --color-neutral-700: 80, 73, 69;     /* bg2 */
+  --color-neutral-800: 60, 56, 54;     /* bg1 */
+  --color-neutral-900: 29, 32, 33;     /* bg0_h */
+
+  /* Primary: Gruvbox aqua */
+  --color-primary-50: 251, 241, 199;   /* fg0 */
+  --color-primary-100: 235, 219, 178;  /* fg1 */
+  --color-primary-200: 213, 196, 161;  /* fg2 */
+  --color-primary-300: 142, 192, 124;  /* bright aqua */
+  --color-primary-400: 142, 192, 124;  /* bright aqua */
+  --color-primary-500: 104, 157, 106;  /* neutral aqua */
+  --color-primary-600: 104, 157, 106;  /* neutral aqua */
+  --color-primary-700: 66, 123, 88;    /* dark aqua */
+  --color-primary-800: 80, 73, 69;     /* bg2 */
+  --color-primary-900: 40, 40, 40;     /* bg0 */
+
+  /* Secondary: Gruvbox yellow and orange */
+  --color-secondary-50: 251, 241, 199;   /* fg0 */
+  --color-secondary-100: 250, 189, 47;   /* bright yellow */
+  --color-secondary-200: 254, 128, 25;   /* bright orange */
+  --color-secondary-300: 254, 128, 25;   /* bright orange */
+  --color-secondary-400: 214, 93, 14;    /* neutral orange */
+  --color-secondary-500: 214, 93, 14;    /* neutral orange */
+  --color-secondary-600: 175, 58, 3;     /* dark orange */
+  --color-secondary-700: 181, 118, 20;   /* dark yellow */
+  --color-secondary-800: 80, 73, 69;     /* bg2 */
+  --color-secondary-900: 40, 40, 40;     /* bg0 */
+}
+
+/* Page background and default text */
+
+html.dark body {
+  background-color: rgb(29, 32, 33); /* bg0_h */
+  color: rgb(235, 219, 178);         /* fg1 */
+}
+
+html.dark main {
+  color: rgb(235, 219, 178);         /* fg1 */
+}
+
+/* Typography */
+
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  color: rgb(251, 241, 199);         /* fg0 */
+}
+
+html.dark p,
+html.dark li {
+  color: rgb(235, 219, 178);         /* fg1 */
+}
+
+html.dark time,
+html.dark .text-neutral-500,
+html.dark .text-neutral-400 {
+  color: rgb(168, 153, 132);         /* bg4 */
+}
+
+/* Content links */
+
+html.dark main a {
+  color: rgb(142, 192, 124);         /* bright aqua */
+  text-decoration-color: rgb(104, 157, 106); /* neutral aqua */
+  text-underline-offset: 0.14em;
+}
+
+html.dark main a:hover,
+html.dark main a:focus-visible,
+html.dark article a:hover,
+html.dark article a:focus-visible {
+  color: rgb(251, 241, 199);         /* fg0 */
+  text-decoration-color: rgb(142, 192, 124); /* bright aqua */
+}
+
+html.dark article a {
+  color: rgb(142, 192, 124);         /* bright aqua */
+  text-decoration-color: rgb(104, 157, 106); /* neutral aqua */
+}
+
+/* Post title links */
+
+html.dark h2 a,
+html.dark h3 a,
+html.dark article h2 a,
+html.dark article h3 a {
+  color: rgb(251, 241, 199);         /* fg0 */
+  text-decoration-color: rgb(104, 157, 106); /* neutral aqua */
+}
+
+html.dark h2 a:hover,
+html.dark h3 a:hover,
+html.dark h2 a:focus-visible,
+html.dark h3 a:focus-visible,
+html.dark article h2 a:hover,
+html.dark article h3 a:hover,
+html.dark article h2 a:focus-visible,
+html.dark article h3 a:focus-visible {
+  color: rgb(142, 192, 124);         /* bright aqua */
+  text-decoration-color: rgb(142, 192, 124); /* bright aqua */
+}
+
+/* Header background */
+
+html.dark header,
+html.dark nav {
+  background-color: rgb(29, 32, 33); /* bg0_h */
+}
+
+/* Tags and categories */
+
+html.dark a[href*="/tags/"],
+html.dark a[href*="/categories/"] {
+  color: rgb(142, 192, 124);         /* bright aqua */
+  border-color: rgb(104, 157, 106);  /* neutral aqua */
+  background-color: rgb(50, 48, 47); /* bg0_s */
+}
+
+html.dark a[href*="/tags/"]:hover,
+html.dark a[href*="/tags/"]:focus-visible,
+html.dark a[href*="/categories/"]:hover,
+html.dark a[href*="/categories/"]:focus-visible {
+  color: rgb(251, 241, 199);         /* fg0 */
+  border-color: rgb(142, 192, 124);  /* bright aqua */
+  background-color: rgb(60, 56, 54); /* bg1 */
+}
+
+/* Site title / brand base color. custom.css adds the accent hash mark. */
+
+html.dark .main-menu > a {
+  color: rgb(var(--color-neutral-200));
+  text-decoration-color: transparent;
+}
+
+html:not(.dark) .main-menu > a {
+  color: rgb(var(--color-neutral-700));
+  text-decoration-color: transparent;
+}
+
+/* Code */
+
+html.dark code:not(pre code) {
+  color: rgb(250, 189, 47);          /* bright yellow */
+  background-color: rgb(50, 48, 47); /* bg0_s */
+}
+
+html.dark pre {
+  background-color: rgb(40, 40, 40); /* bg0 */
+  color: rgb(235, 219, 178);         /* fg1 */
+}
+
+/* Footer */
+
+html.dark footer {
+  color: rgb(168, 153, 132);         /* bg4 */
+}
+
+html.dark footer a,
+html.dark footer button {
+  color: rgb(142, 192, 124);         /* bright aqua */
+  text-decoration-color: rgb(104, 157, 106); /* neutral aqua */
+}
+
+html.dark footer a:hover,
+html.dark footer a:focus-visible,
+html.dark footer button:hover,
+html.dark footer button:focus-visible {
+  color: rgb(251, 241, 199);         /* fg0 */
+  text-decoration-color: rgb(142, 192, 124); /* bright aqua */
+}
+
+/* Focus outlines */
+
+html.dark a:focus-visible,
+html.dark button:focus-visible,
+html.dark input:focus-visible,
+html.dark label[for="mobile-menu-toggle"]:focus-visible {
+  outline: 2px solid rgb(104, 157, 106); /* neutral aqua */
+  outline-offset: 2px;
+}
+
+/* Text selection */
+
+html.dark ::selection {
+  color: rgb(40, 40, 40);            /* bg0 */
+  background-color: rgb(142, 192, 124); /* bright aqua */
+}

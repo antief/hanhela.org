@@ -1,0 +1,16 @@
+ingress:
+  enabled: false
+
+gateway:
+  enabled: true
+  parentRefs:
+    - name: shared-gateway
+      namespace: infra
+      sectionName: http
+  hostnames:
+    - site.example.com
+  matches:
+    - path:
+        type: PathPrefix
+        value: /
+  filters: []

@@ -1,0 +1,11 @@
+.git
+.gitignore
+.dockerignore
+public
+resources
+.hugo_build.lock
+.env
+.env.*
+.DS_Store
+Thumbs.db
+node_modules

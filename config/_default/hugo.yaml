@@ -1,0 +1,43 @@
+baseURL: "https://hanhela.org/"
+title: "hanhela.org"
+defaultContentLanguage: "en"
+defaultContentLanguageInSubdir: false
+enableRobotsTXT: true
+summaryLength: 30
+pagination:
+  pagerSize: 10
+timezone: "Europe/Helsinki"
+
+module:
+  imports:
+    - path: github.com/nunocoracao/blowfish/v2
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+permalinks:
+  posts: "/posts/:slug/"
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: false
+  highlight:
+    # Keep Chroma class-based output so theme CSS can switch between
+    # Gruvbox dark and light appearances.
+    style: gruvbox
+    noClasses: false
+
+imaging:
+  quality: 85
+
+build:
+  writeStats: false
+
+sitemap:
+  changefreq: weekly
+  priority: 0.5
+  filename: sitemap.xml
