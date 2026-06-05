@@ -1,43 +1,31 @@
 ---
-title: Curriculum Vitae
-draft: false
-translationKey: cv
+title: "Curriculum Vitae"
+description: "A concise overview of recent work experience, education and professional direction."
+translationKey: "cv"
 showDate: false
-showDateOnlyInArticle: false
-showDateUpdated: false
 showAuthor: true
-showHeadingAnchors: false
-showPagination: false
 showReadingTime: false
-showTableOfContents: true
-showTaxonomies: false
-showWordCount: false
-showSummary: false
-sharingLinks: false
-showEdit: false
-showViews: false
-showLikes: false
-layoutBackgroundHeaderSpace: false
-description: Structured overview of my background, education and technical focus.
+showTableOfContents: false
 aliases:
 - /resume/
 ---
 
 ## Profile
 
-I am a career changer soon graduating with a degree in business information technology. My current focus is Linux, Kubernetes, GitOps, DevOps practices and cloud native infrastructure.
+I am a career changer soon graduating with a degree in business information technology. My current professional direction is focused on Linux, Kubernetes environments, GitOps, DevOps practices and cloud native infrastructure.
 
-Before moving into IT, I worked for more than ten years in production and laboratory environments. That background has developed my systematic way of working, attention to detail, process discipline, quality control mindset and practical troubleshooting skills.
+Before moving into IT, I worked for more than ten years in production and laboratory environments. That background has developed my systematic way of working, attention to detail, process discipline, quality control mindset and practical troubleshooting skills. I want to combine these strengths with technical skills in cloud infrastructure, DevOps and platform environments.
 
-## Experience
+## Recent work experience
 
 {{< overview-table >}}
 
-| Context | Role | Focus | What it developed |
+| Time | Employer | Role | Summary |
 |---|---|---|---|
-| Production and laboratory environments | Laboratory and process work | Quality control, documentation, measurements, process discipline and incident situations. | Systematic work, responsibility, precision and practical problem solving. |
-| Practical IT projects | Cloud native and Linux learning projects | Kubernetes, GitOps, Linux, networking, observability, self-hosting and technical documentation. | Ability to build, maintain and document systems where infrastructure, applications and automation connect. |
-| Client and internship projects | Deployments and technical support | Cloud environments, container services, VPN connectivity, automation and system setup. | Requirements clarification, solution reasoning, clear communication and documentation of technical choices. |
+| 2026 | [Kabei Oy](https://www.kabei.fi/) | Systems Specialist, internship | Cloud infrastructure, Linux servers, container services, VPN connectivity and technical documentation. |
+| 2019– | [Ultraprint Oy](https://www.ultraprint.fi/) | Operator | Printed electronics production, process monitoring and quality assurance. |
+| 2015–2018 | [Endomines Oy](https://endomines.com/) | Laboratory Technician | Geological sample preparation, analysis, quality control and documentation. |
+| 2014 | [Outokumpu Stainless Oy](https://www.outokumpu.com/) | Laboratory Technician | Metallurgical analyses, sample handling and laboratory work in an industrial environment. |
 
 {{< /overview-table >}}
 
@@ -45,33 +33,16 @@ Before moving into IT, I worked for more than ten years in production and labora
 
 {{< overview-table >}}
 
-| School | Degree | Focus | Status |
+| Time | Institution | Degree | Key studies |
 |---|---|---|---|
-| Karelia University of Applied Sciences | Bachelor of Business Administration, Business Information Technology | Software development, IT systems and practical technology projects. | Graduating soon. |
+| 2023– | [Karelia University of Applied Sciences](https://www.karelia.fi/en/) | Bachelor of Business Administration, Business Information Technology | Software development, IT infrastructure, information security, automation and systems integration. |
+| 2013–2014 | [Vocational College Lappia](https://lappia.fi/en/) | Vocational Qualification in Laboratory Technology | Laboratory work, chemical analytics, instrumental analysis, bioanalytics, quality control and industrial processes. |
+| 2008 | [Merikoski Upper Secondary School](https://fi.wikipedia.org/wiki/Merikosken_lukio) | Matriculation Examination | General upper secondary education. |
 
 {{< /overview-table >}}
 
-## Technical focus
+## Technical direction
 
-{{< overview-table >}}
+My goal is to move into IT roles where I can combine my technical skills with my previous experience from production and laboratory environments. I am especially interested in industrial DevOps, cloud native environments, Linux, Kubernetes, GitOps, automation and practical systems operations.
 
-| Area | Tools and topics | Goal |
-|---|---|---|
-| Cloud native | Kubernetes, Helm, GitOps, FluxCD, Gateway API, TLS automation and cluster operations. | Grow toward DevOps, platform engineering and cloud infrastructure roles. |
-| Linux and infrastructure | Linux environments, containers, networking, DNS, monitoring and self-hosted services. | Understand systems at a practical level, not only through individual tools. |
-| Programming and automation | Python, C#, scripting, configuration management and technical documentation. | Build small tools, automate repetitive tasks and document solutions clearly. |
-| Observability | Prometheus, Grafana, Loki, Alloy, uptime monitoring and alerting. | Learn to see what is happening in systems and debug issues systematically. |
-
-{{< /overview-table >}}
-
-## Projects
-
-{{< overview-table >}}
-
-| Project | Technologies | Description |
-|---|---|---|
-| [Kubernetes Lab](/posts/kubernetes-lab/) | OKE, OpenTofu, FluxCD, Envoy Gateway, Gateway API, Longhorn, Prometheus, Grafana, Loki. | Personal GitOps lab running on Oracle Kubernetes Engine. |
-| [Deploying a Hugo blog with Helm](/posts/deploying-simple-hugo-blog-with-helm/) | Hugo, Docker, Helm, Kubernetes, GitOps. | Packaging and deploying this site to a Kubernetes cluster. |
-| Self-hosted environments | Linux, Docker, Kubernetes, DNS, TLS, VPN, monitoring. | Practical work with service deployment, maintenance and documentation. |
-
-{{< /overview-table >}}
+[Download the PDF version of my CV](/cv/antti-hanhela-cv.pdf)

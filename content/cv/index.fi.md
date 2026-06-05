@@ -1,43 +1,31 @@
 ---
-title: Curriculum Vitae
-draft: false
-translationKey: cv
+title: "Curriculum Vitae"
+description: "Tiivis yhteenveto viimeaikaisesta työkokemuksesta, koulutuksesta ja ammatillisesta suunnasta."
+translationKey: "cv"
 showDate: false
-showDateOnlyInArticle: false
-showDateUpdated: false
 showAuthor: true
-showHeadingAnchors: false
-showPagination: false
 showReadingTime: false
-showTableOfContents: true
-showTaxonomies: false
-showWordCount: false
-showSummary: false
-sharingLinks: false
-showEdit: false
-showViews: false
-showLikes: false
-layoutBackgroundHeaderSpace: false
-description: Jäsennelty yhteenveto taustastani, koulutuksesta ja teknisestä suunnasta.
+showTableOfContents: false
 aliases:
 - /fi/resume/
 ---
 
 ## Profiili
 
-Olen tietojenkäsittelyn tradenomiksi valmistuva alanvaihtaja. Tämänhetkinen painopisteeni on Linuxissa, Kubernetesissa, GitOpsissa, DevOps-käytännöissä ja cloud native -infrassa.
+Olen tietojenkäsittelyn tradenomiksi valmistuva alanvaihtaja. Tämänhetkinen ammatillinen suuntani painottuu Linuxiin, Kubernetes-käyttöympäristöihin, GitOpsiin, DevOps-käytäntöihin ja cloud native -infraan.
 
-Ennen IT-alalle siirtymistä työskentelin yli kymmenen vuotta tuotanto- ja laboratorioympäristöissä. Tausta on kehittänyt järjestelmällisyyttä, tarkkuutta, prosessien noudattamista, laadunvarmistusta ja käytännön ongelmanratkaisua.
+Ennen IT-alalle siirtymistä olen työskennellyt yli kymmenen vuotta tuotanto- ja laboratorioympäristöissä. Taustani on kehittänyt järjestelmällisyyttä, tarkkuutta, prosessien noudattamista, laadunvarmistusta ja käytännön ongelmanratkaisua. Näitä vahvuuksia haluan yhdistää tekniseen osaamiseen pilvi-infran, DevOpsin ja alustaympäristöjen parissa.
 
-## Kokemus
+## Viimeaikainen työkokemus
 
 {{< overview-table >}}
 
-| Ympäristö | Rooli | Painopiste | Mitä osaamista siitä jäi |
+| Aika | Työnantaja | Rooli | Tiivistelmä |
 |---|---|---|---|
-| Tuotanto- ja laboratorioympäristöt | Laboratorio- ja prosessityö | Laadunvarmistus, dokumentointi, mittaukset, prosessien noudattaminen ja häiriötilanteet. | Järjestelmällinen työskentely, vastuullisuus, tarkkuus ja käytännönläheinen ongelmanratkaisu. |
-| Käytännön IT-projektit | Cloud native- ja Linux-oppimisprojektit | Kubernetes, GitOps, Linux, verkot, observability, self-hosting ja tekninen dokumentointi. | Kyky rakentaa, ylläpitää ja dokumentoida kokonaisuuksia, joissa infra, sovellukset ja automaatio liittyvät toisiinsa. |
-| Asiakas- ja harjoitteluprojektit | Käyttöönotot ja tekninen tuki | Pilviympäristöt, konttipalvelut, VPN-yhteydet, automaatio ja järjestelmien käyttöönotto. | Tarpeiden selvittäminen, ratkaisujen perustelu, selkeä viestintä ja teknisten valintojen dokumentointi. |
+| 2026 | [Kabei Oy](https://www.kabei.fi/) | Järjestelmäasiantuntija, työharjoittelu | Pilvi-infrastruktuuri, Linux-palvelimet, konttipalvelut, VPN-yhteydet ja tekninen dokumentointi. |
+| 2019– | [Ultraprint Oy](https://www.ultraprint.fi/) | Operaattori | Painetun elektroniikan tuotanto, prosessien seuranta ja laadunvarmistus. |
+| 2015–2018 | [Endomines Oy](https://endomines.com/) | Laborantti | Geologisten näytteiden esikäsittely, analysointi, laadunvalvonta ja dokumentointi. |
+| 2014 | [Outokumpu Stainless Oy](https://www.outokumpu.com/) | Laborantti | Metallurgiset analyysit, näytteenkäsittely ja laboratoriotyö teollisuusympäristössä. |
 
 {{< /overview-table >}}
 
@@ -45,33 +33,16 @@ Ennen IT-alalle siirtymistä työskentelin yli kymmenen vuotta tuotanto- ja labo
 
 {{< overview-table >}}
 
-| Oppilaitos | Tutkinto | Painopiste | Tila |
+| Aika | Oppilaitos | Tutkinto | Keskeiset opinnot |
 |---|---|---|---|
-| Karelia-ammattikorkeakoulu | Tradenomi, tietojenkäsittely | Ohjelmistokehitys, IT-järjestelmät ja käytännön teknologiaprojektit. | Valmistumassa. |
+| 2023– | [Karelia AMK](https://www.karelia.fi/) | Tradenomi, tietojenkäsittely | Ohjelmistokehitys, IT-infrastruktuurit, tietoturva, automaatio ja järjestelmäintegraatiot. |
+| 2013–2014 |  [Ammattiopisto Lappia](https://lappia.fi) | Laboratorioalan perustutkinto | Laboratoriotyö, kemiallinen analytiikka, laiteanalytiikka, bioanalytiikka, laadunvalvonta ja teollisuuden prosessit. |
+| 2008 | [Merikosken lukio](https://fi.wikipedia.org/wiki/Merikosken_lukio) | Ylioppilastutkinto | Yleissivistävä koulutus. |
 
 {{< /overview-table >}}
 
 ## Tekninen suunta
 
-{{< overview-table >}}
+Tavoitteeni on työllistyä IT-alalle tehtäviin, joissa pääsen hyödyntämään sekä teknistä osaamistani että aiempaa kokemustani tuotanto- ja laboratorioympäristöistä. Erityisesti minua kiinnostavat teollinen DevOps, cloud native -ympäristöt, Linux, Kubernetes, GitOps, automaatio ja järjestelmien käytännön ylläpito.
 
-| Alue | Työkalut ja aiheet | Tavoite |
-|---|---|---|
-| Cloud native | Kubernetes, Helm, GitOps, FluxCD, Gateway API, TLS-automaatio ja klusterien operointi. | Kehittyä DevOps-, platform- ja pilvi-infran tehtäviin. |
-| Linux ja infra | Linux-ympäristöt, kontit, verkot, DNS, monitorointi ja self-hosted-palvelut. | Ymmärtää järjestelmien toimintaa käytännön tasolla, ei vain yksittäisten työkalujen kautta. |
-| Ohjelmointi ja automaatio | Python, C#, skriptaus, konfiguraationhallinta ja tekninen dokumentointi. | Rakentaa pieniä työkaluja, automatisoida toistuvia tehtäviä ja dokumentoida ratkaisut selkeästi. |
-| Observability | Prometheus, Grafana, Loki, Alloy, uptime-seuranta ja hälytykset. | Oppia näkemään, mitä järjestelmissä tapahtuu ja miten ongelmia voidaan selvittää järjestelmällisesti. |
-
-{{< /overview-table >}}
-
-## Projektit
-
-{{< overview-table >}}
-
-| Projekti | Teknologiat | Kuvaus |
-|---|---|---|
-| [Kubernetes Lab](/fi/posts/kubernetes-lab/) | OKE, OpenTofu, FluxCD, Envoy Gateway, Gateway API, Longhorn, Prometheus, Grafana, Loki. | Henkilökohtainen GitOps-lab Oracle Kubernetes Enginen päällä. |
-| [Hugo-blogin julkaisu Helmillä](/fi/posts/yksinkertaisen-hugo-blogin-julkaisu-helmilla/) | Hugo, Docker, Helm, Kubernetes, GitOps. | Tämän sivuston paketoiminen ja julkaisu Kubernetes-klusteriin. |
-| Self-hosted-ympäristöt | Linux, Docker, Kubernetes, DNS, TLS, VPN, monitorointi. | Käytännön harjoittelua palveluiden käyttöönotosta, ylläpidosta ja dokumentoinnista. |
-
-{{< /overview-table >}}
+[Lataa CV:n PDF-versio](/cv/antti-hanhela-cv.pdf)
