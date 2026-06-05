@@ -949,16 +949,15 @@ html.dark main a[rel~="me"][aria-label]:focus-visible {
   color: rgb(var(--color-primary-400));
 }
 
-/* 8. Footer attribution and article links
+/* 8. Article links
  *
  * Article links stay accent-colored without a hover color shift. Footer
- * attribution links inherit muted footer text until hover/focus.
+ * attribution links keep Blowfish's built-in hover underline, but normalize
+ * the attribution colors to match the local Gruvbox footer styling.
  */
 #site-footer p.text-xs a[href="https://gohugo.io/"],
 #site-footer p.text-xs a[href="https://blowfish.page/"] {
   color: inherit;
-  text-decoration-line: none;
-  text-decoration-color: transparent;
 }
 
 #site-footer p.text-xs a[href="https://gohugo.io/"]:hover,
@@ -966,8 +965,6 @@ html.dark main a[rel~="me"][aria-label]:focus-visible {
 #site-footer p.text-xs a[href="https://blowfish.page/"]:hover,
 #site-footer p.text-xs a[href="https://blowfish.page/"]:focus-visible {
   color: rgb(var(--color-primary-700));
-  text-decoration-line: none;
-  text-decoration-color: transparent;
 }
 
 html.dark #site-footer p.text-xs a[href="https://gohugo.io/"]:hover,
