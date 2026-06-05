@@ -156,7 +156,7 @@ ghcr.io/<owner>/<repo>
 For this repository that is expected to be:
 
 ```text
-ghcr.io/antief/blog
+ghcr.io/antief/hanhela.org
 ```
 
 The workflow publishes branch, git tag and `sha-*` tags. For Kubernetes, prefer an immutable `sha-*` tag after the first test deployment works.
@@ -203,7 +203,7 @@ The chart defaults to:
 
 ```yaml
 image:
-  repository: ghcr.io/antief/blog
+  repository: ghcr.io/antief/hanhela.org
   tag: main
 ```
 
