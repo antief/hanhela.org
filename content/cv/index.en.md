@@ -1,6 +1,5 @@
 ---
 title: Curriculum Vitae
-date: '2026-06-03T12:00:00+03:00'
 draft: false
 translationKey: cv
 showDate: false
@@ -26,33 +25,53 @@ aliases:
 
 ## Profile
 
-I am a career changer soon graduating with a business information technology degree. My current focus is on Linux, Kubernetes, GitOps, DevOps practices and cloud native infrastructure.
+I am a career changer soon graduating with a degree in business information technology. My current focus is Linux, Kubernetes, GitOps, DevOps practices and cloud native infrastructure.
 
-Before moving into IT, I worked for more than ten years in production and laboratory environments. That background has given me a practical understanding of industrial work, quality control, systematic troubleshooting and process-oriented operations.
-
----
+Before moving into IT, I worked for more than ten years in production and laboratory environments. That background has developed my systematic way of working, attention to detail, process discipline, quality control mindset and practical troubleshooting skills.
 
 ## Experience
 
-| Context | Role | Focus | Period |
-| --- | --- | --- | --- |
-| Production and laboratory environments | Laboratory and process work | Systematic work, process discipline, quality control, documentation and practical troubleshooting | Over 10 years |
-| Practical IT projects | Cloud native and Linux learning projects | Kubernetes, GitOps, Linux, networking, observability, self-hosting and infrastructure documentation | Ongoing |
+{{< overview-table >}}
 
----
+| Context | Role | Focus | What it developed |
+|---|---|---|---|
+| Production and laboratory environments | Laboratory and process work | Quality control, documentation, measurements, process discipline and incident situations. | Systematic work, responsibility, precision and practical problem solving. |
+| Practical IT projects | Cloud native and Linux learning projects | Kubernetes, GitOps, Linux, networking, observability, self-hosting and technical documentation. | Ability to build, maintain and document systems where infrastructure, applications and automation connect. |
+| Client and internship projects | Deployments and technical support | Cloud environments, container services, VPN connectivity, automation and system setup. | Requirements clarification, solution reasoning, clear communication and documentation of technical choices. |
+
+{{< /overview-table >}}
 
 ## Education
 
-| School | Degree | Focus | Status |
-| --- | --- | --- | --- |
-| Karelia University of Applied Sciences | Bachelor of Business Administration, Business Information Technology | Software development, IT systems and practical technology projects | Graduating soon |
+{{< overview-table >}}
 
----
+| School | Degree | Focus | Status |
+|---|---|---|---|
+| Karelia University of Applied Sciences | Bachelor of Business Administration, Business Information Technology | Software development, IT systems and practical technology projects. | Graduating soon. |
+
+{{< /overview-table >}}
 
 ## Technical focus
 
-| Area | Tools and topics |
-| --- | --- |
-| Cloud native | Kubernetes, Helm, GitOps, Flux, ingress, TLS automation and cluster operations |
-| Linux and infrastructure | Linux environments, containers, networking, DNS, monitoring and self-hosted services |
-| Programming and automation | Python, C#, scripting, configuration management and technical documentation |
+{{< overview-table >}}
+
+| Area | Tools and topics | Goal |
+|---|---|---|
+| Cloud native | Kubernetes, Helm, GitOps, FluxCD, Gateway API, TLS automation and cluster operations. | Grow toward DevOps, platform engineering and cloud infrastructure roles. |
+| Linux and infrastructure | Linux environments, containers, networking, DNS, monitoring and self-hosted services. | Understand systems at a practical level, not only through individual tools. |
+| Programming and automation | Python, C#, scripting, configuration management and technical documentation. | Build small tools, automate repetitive tasks and document solutions clearly. |
+| Observability | Prometheus, Grafana, Loki, Alloy, uptime monitoring and alerting. | Learn to see what is happening in systems and debug issues systematically. |
+
+{{< /overview-table >}}
+
+## Projects
+
+{{< overview-table >}}
+
+| Project | Technologies | Description |
+|---|---|---|
+| [Kubernetes Lab](/posts/kubernetes-lab/) | OKE, OpenTofu, FluxCD, Envoy Gateway, Gateway API, Longhorn, Prometheus, Grafana, Loki. | Personal GitOps lab running on Oracle Kubernetes Engine. |
+| [Deploying a Hugo blog with Helm](/posts/deploying-simple-hugo-blog-with-helm/) | Hugo, Docker, Helm, Kubernetes, GitOps. | Packaging and deploying this site to a Kubernetes cluster. |
+| Self-hosted environments | Linux, Docker, Kubernetes, DNS, TLS, VPN, monitoring. | Practical work with service deployment, maintenance and documentation. |
+
+{{< /overview-table >}}

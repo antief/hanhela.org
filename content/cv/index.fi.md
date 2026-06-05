@@ -1,6 +1,5 @@
 ---
 title: Curriculum Vitae
-date: '2026-06-03T12:00:00+03:00'
 draft: false
 translationKey: cv
 showDate: false
@@ -28,31 +27,51 @@ aliases:
 
 Olen tietojenkäsittelyn tradenomiksi valmistuva alanvaihtaja. Tämänhetkinen painopisteeni on Linuxissa, Kubernetesissa, GitOpsissa, DevOps-käytännöissä ja cloud native -infrassa.
 
-Ennen IT-alalle siirtymistä olen työskennellyt yli kymmenen vuotta tuotanto- ja laboratorioympäristöissä. Tausta on kehittänyt käytännön ymmärrystä teollisesta työstä, laadunvarmistuksesta, järjestelmällisestä ongelmanratkaisusta ja prosessien mukaisesta toiminnasta.
-
----
+Ennen IT-alalle siirtymistä työskentelin yli kymmenen vuotta tuotanto- ja laboratorioympäristöissä. Tausta on kehittänyt järjestelmällisyyttä, tarkkuutta, prosessien noudattamista, laadunvarmistusta ja käytännön ongelmanratkaisua.
 
 ## Kokemus
 
-| Ympäristö | Rooli | Painopiste | Aika |
-| --- | --- | --- | --- |
-| Tuotanto- ja laboratorioympäristöt | Laboratorio- ja prosessityö | Järjestelmällinen työ, prosessien noudattaminen, laadunvarmistus, dokumentointi ja käytännön ongelmanratkaisu | Yli 10 vuotta |
-| Käytännön IT-projektit | Cloud native- ja Linux-oppimisprojektit | Kubernetes, GitOps, Linux, verkot, observability, self-hosting ja infran dokumentointi | Jatkuva |
+{{< overview-table >}}
 
----
+| Ympäristö | Rooli | Painopiste | Mitä osaamista siitä jäi |
+|---|---|---|---|
+| Tuotanto- ja laboratorioympäristöt | Laboratorio- ja prosessityö | Laadunvarmistus, dokumentointi, mittaukset, prosessien noudattaminen ja häiriötilanteet. | Järjestelmällinen työskentely, vastuullisuus, tarkkuus ja käytännönläheinen ongelmanratkaisu. |
+| Käytännön IT-projektit | Cloud native- ja Linux-oppimisprojektit | Kubernetes, GitOps, Linux, verkot, observability, self-hosting ja tekninen dokumentointi. | Kyky rakentaa, ylläpitää ja dokumentoida kokonaisuuksia, joissa infra, sovellukset ja automaatio liittyvät toisiinsa. |
+| Asiakas- ja harjoitteluprojektit | Käyttöönotot ja tekninen tuki | Pilviympäristöt, konttipalvelut, VPN-yhteydet, automaatio ja järjestelmien käyttöönotto. | Tarpeiden selvittäminen, ratkaisujen perustelu, selkeä viestintä ja teknisten valintojen dokumentointi. |
+
+{{< /overview-table >}}
 
 ## Koulutus
 
-| Oppilaitos | Tutkinto | Painopiste | Tila |
-| --- | --- | --- | --- |
-| Karelia-ammattikorkeakoulu | Tradenomi, tietojenkäsittely | Ohjelmistokehitys, IT-järjestelmät ja käytännön teknologiaprojektit | Valmistumassa |
+{{< overview-table >}}
 
----
+| Oppilaitos | Tutkinto | Painopiste | Tila |
+|---|---|---|---|
+| Karelia-ammattikorkeakoulu | Tradenomi, tietojenkäsittely | Ohjelmistokehitys, IT-järjestelmät ja käytännön teknologiaprojektit. | Valmistumassa. |
+
+{{< /overview-table >}}
 
 ## Tekninen suunta
 
-| Alue | Työkalut ja aiheet |
-| --- | --- |
-| Cloud native | Kubernetes, Helm, GitOps, Flux, ingress, TLS-automaatio ja klusterien operointi |
-| Linux ja infra | Linux-ympäristöt, kontit, verkot, DNS, monitorointi ja self-hosted-palvelut |
-| Ohjelmointi ja automaatio | Python, C#, skriptaus, konfiguraationhallinta ja tekninen dokumentointi |
+{{< overview-table >}}
+
+| Alue | Työkalut ja aiheet | Tavoite |
+|---|---|---|
+| Cloud native | Kubernetes, Helm, GitOps, FluxCD, Gateway API, TLS-automaatio ja klusterien operointi. | Kehittyä DevOps-, platform- ja pilvi-infran tehtäviin. |
+| Linux ja infra | Linux-ympäristöt, kontit, verkot, DNS, monitorointi ja self-hosted-palvelut. | Ymmärtää järjestelmien toimintaa käytännön tasolla, ei vain yksittäisten työkalujen kautta. |
+| Ohjelmointi ja automaatio | Python, C#, skriptaus, konfiguraationhallinta ja tekninen dokumentointi. | Rakentaa pieniä työkaluja, automatisoida toistuvia tehtäviä ja dokumentoida ratkaisut selkeästi. |
+| Observability | Prometheus, Grafana, Loki, Alloy, uptime-seuranta ja hälytykset. | Oppia näkemään, mitä järjestelmissä tapahtuu ja miten ongelmia voidaan selvittää järjestelmällisesti. |
+
+{{< /overview-table >}}
+
+## Projektit
+
+{{< overview-table >}}
+
+| Projekti | Teknologiat | Kuvaus |
+|---|---|---|
+| [Kubernetes Lab](/fi/posts/kubernetes-lab/) | OKE, OpenTofu, FluxCD, Envoy Gateway, Gateway API, Longhorn, Prometheus, Grafana, Loki. | Henkilökohtainen GitOps-lab Oracle Kubernetes Enginen päällä. |
+| [Hugo-blogin julkaisu Helmillä](/fi/posts/yksinkertaisen-hugo-blogin-julkaisu-helmilla/) | Hugo, Docker, Helm, Kubernetes, GitOps. | Tämän sivuston paketoiminen ja julkaisu Kubernetes-klusteriin. |
+| Self-hosted-ympäristöt | Linux, Docker, Kubernetes, DNS, TLS, VPN, monitorointi. | Käytännön harjoittelua palveluiden käyttöönotosta, ylläpidosta ja dokumentoinnista. |
+
+{{< /overview-table >}}

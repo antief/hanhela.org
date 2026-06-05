@@ -1,14 +1,14 @@
 ---
 title: "Kubernetes Lab"
-date: 2026-06-02T20:00:00+03:00
 draft: false
+showDate: false
 highlight: true
 highlightWeight: 10
 weight: 1
 slug: "kubernetes-lab"
 translationKey: "kubernetes-lab"
-description: "A practical Kubernetes and GitOps lab running on Oracle Kubernetes Engine."
-summary: "OKE-based Kubernetes and GitOps lab with ingress, TLS, observability and public status monitoring."
+description: "A practical Kubernetes and GitOps environment running on Oracle Kubernetes Engine."
+summary: "An OKE-based Kubernetes and GitOps lab with Gateway API-based HTTPS routing, TLS, observability and public status monitoring."
 tags:
   - Kubernetes
   - OKE
@@ -19,78 +19,125 @@ showTableOfContents: true
 showTaxonomies: true
 ---
 
-This post is the starting point for documenting my Kubernetes lab. The environment runs on Oracle Kubernetes Engine and is managed with a GitOps workflow. The goal is to keep the public site lightweight while keeping the deeper technical documentation in GitHub.
+## TL;DR
 
-## What this lab is
+This is my personal Kubernetes lab running on [Oracle Cloud](https://www.oracle.com/cloud/free/). It is not just a local test setup, but a small live environment where I practice cloud infrastructure, GitOps, application delivery, secrets management and observability.
 
-The lab is a small, practical Kubernetes environment built for learning and demonstrating cloud native infrastructure work. It is not meant to be a large production platform, but it uses the same kinds of tools and patterns that are common in real environments.
+The infrastructure is built with OpenTofu, and Kubernetes resources are managed from Git with FluxCD. Public HTTPS traffic goes through an OCI Network Load Balancer, Envoy Gateway and Gateway API. TLS, DNS, storage, metrics, logs and external status monitoring are part of the same Git-managed setup.
 
-The focus areas are:
+## Links
 
-- Kubernetes fundamentals in a managed cloud environment
-- GitOps-based cluster management
-- application delivery through declarative manifests
-- ingress, DNS and TLS certificate automation
-- monitoring, dashboards and uptime visibility
-- documenting technical decisions in a reusable way
+{{< overview-table >}}
 
-## Cluster overview
+| Part | Link | Description |
+|---|---|---|
+| Cluster repository | [oke-gitops-cluster](https://github.com/antief/oke-gitops-cluster) | The infrastructure and GitOps structure of the running OKE lab. |
+| Template | [oke-gitops-template](https://github.com/antief/oke-gitops-template) | A more reusable starting point for building a similar cluster. |
+| Grafana | [public dashboard](https://grafana.hanhela.org/public-dashboards/63d97cbd15c246c69ee103278182685e) | A limited public view into selected cluster metrics. |
+| Status | [status.hanhela.org](https://status.hanhela.org/) | External availability monitoring for selected services. |
 
-The cluster runs on Oracle Kubernetes Engine. The main reason for using OKE is that it provides a realistic managed Kubernetes environment with a generous free tier, which makes it useful for long-term learning and experimentation.
+{{< /overview-table >}}
 
-At a high level, the lab includes:
+## Why this lab exists
 
-- Oracle Kubernetes Engine as the Kubernetes platform
-- GitHub as the source of truth for manifests and documentation
-- Flux for GitOps reconciliation
-- Helm/Kustomize-based application definitions
-- cert-manager for TLS certificates
-- external DNS automation where applicable
-- monitoring and uptime checks for selected services
+I wanted an environment where Kubernetes is not just a set of isolated commands or local examples. The goal is to keep a small but real setup running, with the same basic concerns that appear in larger environments: networking, application delivery, certificates, secrets, storage, monitoring and documentation.
+
+Oracle Kubernetes Engine is a good fit for this because Oracle Cloud's Ampere A1 resources make it possible to run the lab for a long time at very low cost. At the same time, the setup is still close enough to a normal cloud environment, because it runs on a managed Kubernetes service instead of a local test cluster.
+
+## What I use it for
+
+{{< overview-table >}}
+
+| Part | Description |
+|---|---|
+| Cloud infrastructure | The OKE cluster, VCN network, subnets, load balancers and supporting resources are built with OpenTofu. |
+| GitOps | The desired cluster state lives in GitHub, and FluxCD reconciles changes into the cluster. |
+| Public application delivery | HTTPS traffic goes through an OCI Network Load Balancer, Envoy Gateway and Gateway API. |
+| TLS and DNS | cert-manager requests certificates, and ExternalDNS manages DNS records through Cloudflare. |
+| Secrets | Secrets are stored in OCI Vault and synced into Kubernetes with External Secrets Operator. |
+| Storage | Longhorn provides the persistent storage layer inside the cluster. |
+| Observability | Prometheus, Grafana, Loki and Alloy collect metrics and logs. |
+| Availability monitoring | Better Stack monitors selected services from outside the cluster. |
+
+{{< /overview-table >}}
+
+## How it fits together
+
+The basic idea is simple: infrastructure is built as code, applications are described as manifests, and changes are applied through Git.
+
+```text
+GitHub
+  → FluxCD
+    → OKE
+      → Envoy Gateway / Gateway API
+        → Kubernetes services
+```
+
+Public traffic first reaches the OCI Network Load Balancer. From there, Envoy Gateway and Gateway API routes direct HTTPS traffic to the right Kubernetes services.
+
+## Core components
+
+{{< overview-table >}}
+
+| Part | Components | Description |
+|---|---|---|
+| Kubernetes | [OKE](https://www.oracle.com/cloud/cloud-native/kubernetes-engine/) | Managed Kubernetes cluster in Oracle Cloud. |
+| Infrastructure | [OpenTofu](https://opentofu.org/) | Builds the OCI network, OKE cluster and supporting resources. |
+| GitOps | [FluxCD](https://fluxcd.io/) | Reconciles the cluster state from the Git repository. |
+| Public traffic | [OCI Network Load Balancer](https://docs.oracle.com/en-us/iaas/Content/NetworkLoadBalancer/home.htm), [Envoy Gateway](https://gateway.envoyproxy.io/), [Gateway API](https://kubernetes.io/docs/concepts/services-networking/gateway/) | Routes public HTTPS traffic to services without traditional Ingress resources. |
+| TLS and DNS | [cert-manager](https://cert-manager.io/), [ExternalDNS](https://kubernetes-sigs.github.io/external-dns/), [Cloudflare DNS-01](https://cloudflare.com/) | Creates TLS certificates and manages DNS records automatically. |
+| Secrets | [OCI Vault](https://docs.oracle.com/en-us/iaas/Content/KeyManagement/home.htm), [External Secrets Operator](https://external-secrets.io/) | Stores secrets in OCI Vault and syncs them into Kubernetes. |
+| Storage | [Longhorn](https://longhorn.io/) | Provides the persistent storage layer inside the cluster. |
+| Observability | [Prometheus](https://prometheus.io/), [Grafana](https://grafana.com/), [Loki](https://grafana.com/oss/loki/), [Alloy](https://grafana.com/oss/alloy) | Collects metrics and logs and makes them visible in dashboards. |
+| Status monitoring | [Better Stack](https://betterstack.com/) | Monitors service availability from outside the cluster. |
+
+{{< /overview-table >}}
 
 ## GitOps workflow
 
-The cluster is managed declaratively. Changes are made in Git, reviewed locally and then reconciled into the cluster by the GitOps controller.
+Changes are made in GitHub first. FluxCD watches the repository and reconciles the cluster towards the desired state described there.
 
-The workflow is intentionally simple:
+The Kubernetes side of the repository is split into layers:
 
-1. update manifests or Helm values in Git
-2. commit and push the change
-3. let Flux reconcile the desired state
-4. verify the result from Kubernetes and monitoring tools
+{{< overview-table >}}
 
-This makes the cluster easier to understand, rebuild and document. It also keeps the running environment close to what is described in the repository.
+| Part | Description |
+|---|---|
+| Controllers | Cluster controllers such as cert-manager, Envoy Gateway, External Secrets Operator, Longhorn and metrics-server. |
+| Configs | Configuration used by those controllers, such as Gateways, ClusterIssuers, ExternalSecrets and StorageClasses. |
+| Addons | Supporting components such as ExternalDNS, kube-prometheus-stack, Loki, Alloy and the Better Stack heartbeat. |
+| Apps | The actual applications and test services. |
 
-## Live services
+{{< /overview-table >}}
 
-The site can later link to selected public views of the environment, such as:
-
-- public status page
-- selected Grafana dashboard or screenshots
-- GitHub repository
-- technical documentation
-
-Only safe, read-only and intentionally public views should be linked here. Administrative interfaces and sensitive infrastructure details should stay private.
-
-## Repositories
-
-The lab is split into two GitHub repositories:
-
-- `oke-gitops-cluster`: the live GitOps repository for the running OKE cluster
-- `oke-gitops-template`: a reusable starting point for building a similar OKE GitOps environment
-
-This split keeps the real cluster configuration separate from the reusable template.
+This keeps the dependencies fairly clear. Controllers are installed first, then their configuration, then supporting add-ons and finally the applications.
 
 ## What this demonstrates
 
-This lab is meant to show practical experience with cloud native infrastructure rather than just listing technologies on a CV. The important part is the full workflow: building the cluster, running real services, keeping the configuration in Git and documenting the decisions clearly.
+Its purpose is to show that I understand the moving parts around a Kubernetes environment at a practical level.
 
-## Next steps
+{{< overview-table >}}
 
-The next version of this post should add:
+| Part | Description |
+|---|---|
+| Kubernetes | The cluster uses real Kubernetes resources, public service routing, storage and operational components. |
+| Cloud infrastructure | OCI resources are built with OpenTofu instead of being clicked together manually. |
+| GitOps | Changes go through GitHub, and FluxCD handles reconciliation inside the cluster. |
+| Networking and delivery | Public HTTPS traffic is built around OCI NLB, Envoy Gateway and Gateway API. |
+| Secrets management | Secrets are not stored directly in Git, but synced into the cluster from OCI Vault. |
+| Observability | Metrics, logs, dashboards and external availability monitoring are part of the environment. |
+| Documentation | The repository and blog posts describe how the environment is built and why certain choices were made. |
 
-- a simple architecture diagram or table
-- links to the public status page and repository
-- a short explanation of the OKE free tier setup
-- selected screenshots or read-only dashboards
-- links to deeper documentation in GitHub
+{{< /overview-table >}}
+
+## Template repository
+
+The main cluster repository describes my own running environment. Alongside it, I created a separate [OKE GitOps template](https://github.com/antief/oke-gitops-template), which is a cleaner starting point for building a similar cluster.
+
+The template does not try to hide everything behind automation. The point is that the structure remains understandable: what OpenTofu builds, what FluxCD installs into the cluster and how the different layers fit together.
+
+## Scope
+
+This is a personal lab, not a finished production platform. I keep it intentionally limited so that it stays maintainable and useful as a learning environment.
+
+The goal is not to run as many services as possible. The goal is to keep a setup where cloud infrastructure, Kubernetes, GitOps, application delivery, observability and documentation support each other.

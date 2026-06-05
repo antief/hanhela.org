@@ -1,14 +1,14 @@
 ---
-title: "Deploying This Site with Helm and GitOps"
+title: "Deploying a simple Hugo blog with Helm"
 date: 2026-06-03T09:00:00+03:00
 draft: false
 highlight: true
 highlightWeight: 20
 weight: 20
-slug: "deploying-this-site-with-helm-gitops"
-translationKey: "deploying-this-site-with-helm-gitops"
-description: "Placeholder for a writeup about packaging this site with Helm and deploying it to Kubernetes with GitOps."
-summary: "Packaging this Hugo site with Helm and deploying it to Kubernetes through GitOps."
+slug: "deploying-simple-hugo-blog-with-helm"
+translationKey: "deploying-simple-hugo-blog-with-helm"
+description: "Placeholder post about packaging a simple Hugo blog with Helm and deploying it to Kubernetes."
+summary: "Packaging a simple Hugo blog with Helm and deploying it to Kubernetes."
 tags:
   - Hugo
   - Helm

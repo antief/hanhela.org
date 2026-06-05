@@ -13,7 +13,7 @@ params:
   author:
     name: "Antti Hanhela"
     image: "img/blowfish-avatar.png"
-    headline: "IT-alalle siirtyvä cloud native-, Linux- ja Kubernetes-ympäristöistä kiinnostunut tekijä."
+    headline: "Cloud native ja DevOps -intoilija ja Linux-nörtti"
     bio: "Muistiinpanoja ja käytännön kirjoituksia Kubernetesista, GitOpsista, Linuxista ja cloud native -infrasta."
     links:
       - github: "https://github.com/antief"

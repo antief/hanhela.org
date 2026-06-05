@@ -643,11 +643,11 @@ html:not(.dark) .chroma .w {
 }
 
 
-/* 6. CV and content tables
+/* 6. Content tables
  *
- * Keep the CV page close to the n9o.xyz table-oriented structure without
- * copying logo assets or changing the site's Gruvbox palette. These rules also
- * make occasional article tables easier to read in both appearances.
+ * Default article tables keep the compact Blowfish-like card style. The
+ * overview-table shortcode is opt-in for CV and lab pages where a lighter,
+ * scan-friendly table works better.
  */
 
 .article-content table {
@@ -707,6 +707,86 @@ html.dark .article-content td {
   color: rgb(var(--color-neutral-200));
 }
 
+.article-content .overview-table {
+  margin-top: 1.5rem;
+  margin-bottom: 2.25rem;
+  overflow-x: auto;
+}
+
+.article-content .overview-table table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow: visible;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.article-content .overview-table thead {
+  background: transparent !important;
+  border-bottom: 1px solid rgb(var(--color-neutral-300));
+}
+
+.article-content .overview-table tbody tr {
+  border-bottom: 1px solid rgb(var(--color-neutral-300));
+}
+
+.article-content .overview-table tbody tr:last-child {
+  border-bottom: 0;
+}
+
+.article-content .overview-table th,
+.article-content .overview-table td {
+  padding: 1.05rem 1.35rem;
+  border: 0 !important;
+  background: transparent !important;
+  vertical-align: middle;
+}
+
+.article-content .overview-table th {
+  color: rgb(var(--color-neutral-900));
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.article-content .overview-table td {
+  color: rgb(var(--color-neutral-700));
+  line-height: 1.55;
+}
+
+.article-content .overview-table th:first-child,
+.article-content .overview-table td:first-child {
+  padding-left: 0;
+}
+
+.article-content .overview-table th:last-child,
+.article-content .overview-table td:last-child {
+  padding-right: 0;
+}
+
+.article-content .overview-table a {
+  text-decoration: none;
+}
+
+html.dark .article-content .overview-table thead,
+html.dark .article-content .overview-table tbody tr {
+  border-bottom-color: rgb(var(--color-neutral-700));
+}
+
+html.dark .article-content .overview-table th {
+  color: rgb(var(--color-neutral-50));
+}
+
+html.dark .article-content .overview-table td {
+  color: rgb(var(--color-neutral-200));
+}
+
 @media (max-width: 720px) {
   .article-content table {
     display: block;
@@ -717,6 +797,13 @@ html.dark .article-content td {
   .article-content th,
   .article-content td {
     min-width: 11rem;
+  }
+
+  .article-content .overview-table th,
+  .article-content .overview-table td {
+    min-width: 10rem;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
   }
 }
 

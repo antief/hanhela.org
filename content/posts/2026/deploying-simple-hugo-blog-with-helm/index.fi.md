@@ -1,14 +1,14 @@
 ---
-title: "Sivuston julkaisu Helmillä ja GitOpsilla"
+title: "Yksinkertaisen Hugo-blogin julkaisu Helmillä"
 date: 2026-06-03T09:00:00+03:00
 draft: false
 highlight: true
 highlightWeight: 20
 weight: 20
-slug: "sivuston-julkaisu-helmilla-ja-gitopsilla"
-translationKey: "deploying-this-site-with-helm-gitops"
-description: "Placeholder-kirjoitus tämän sivuston paketoimisesta Helmillä ja julkaisusta Kubernetesiin GitOps-mallilla."
-summary: "Hugo-sivuston paketoiminen Helmillä ja julkaisu Kubernetesiin GitOps-työnkululla."
+slug: "yksinkertaisen-hugo-blogin-julkaisu-helmilla"
+translationKey: "deploying-simple-hugo-blog-with-helm"
+description: "Placeholder-kirjoitus yksinkertaisen Hugo-blogin paketoimisesta Helmillä ja julkaisusta Kubernetesiin."
+summary: "Yksinkertaisen Hugo-blogin paketoiminen Helmillä ja julkaisu Kubernetesiin."
 tags:
   - Hugo
   - Helm

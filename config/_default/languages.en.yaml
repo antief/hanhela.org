@@ -13,7 +13,7 @@ params:
   author:
     name: "Antti Hanhela"
     image: "img/blowfish-avatar.png"
-    headline: "Career changer focused on cloud native, Linux and Kubernetes environments."
+    headline: "Cloud native and DevOps enthusiast and a Linux nerd"
     bio: "Notes and practical writeups about Kubernetes, GitOps, Linux and cloud native infrastructure."
     links:
       - github: "https://github.com/antief"

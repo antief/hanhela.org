@@ -27,7 +27,7 @@ mod:
 	$(HUGO) mod tidy
 
 dev:
-	$(HUGO) server --bind 0.0.0.0 --disableFastRender
+	$(HUGO) server --bind 0.0.0.0 --disableFastRender --baseURL http://192.168.10.7:1313/
 
 build:
 	$(HUGO) --minify
