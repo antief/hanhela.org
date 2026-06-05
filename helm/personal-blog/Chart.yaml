@@ -9,7 +9,7 @@ keywords:
   - static-site
   - nginx
   - kubernetes
-home: https://hanhela.org
+home: https://blog.hanhela.org
 sources:
   - https://github.com/antief/blog
 maintainers:

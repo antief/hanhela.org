@@ -1,21 +1,40 @@
-# hanhela.org
+# hanhela.org blog
 
-A personal Hugo + Blowfish site for posts and practical writeups about Kubernetes, GitOps, Linux and cloud native infrastructure.
+A public Hugo + Blowfish site for technical posts about Kubernetes, GitOps, Linux and cloud native infrastructure.
 
-The site is built with **Hugo**, **Blowfish**, **Docker**, **Helm** and **Kubernetes**. It is intended to run as a lightweight static site in an Oracle Kubernetes Engine based GitOps environment.
+The repository is intentionally kept safe to publish: site content, theme configuration, container build files and a reusable Helm chart live here. Cluster manifests, credentials and environment-specific secrets belong in separate infrastructure repositories or secret stores.
 
-The public site has a compact structure: **About**, **Posts** and **CV**. The Kubernetes Lab is kept visible as a featured post on the landing page instead of using a separate Projects section. Detailed technical documentation and manifests belong in separate GitHub repositories.
+The first Kubernetes deployment target is:
 
-## Purpose
+```text
+https://blog.hanhela.org/
+```
 
-This repository supports four goals:
+The apex domain can be added later if the cluster Gateway and DNS setup are extended for it.
 
-- provide a compact personal site at `hanhela.org`
-- publish technical posts and notes in a simple Blowfish layout
-- keep the Kubernetes Lab visible as the main featured technical example
-- keep detailed implementation notes and cluster manifests in GitHub repositories
+## What this repository contains
 
-## Main sections
+```text
+.
+├── .github/workflows/        # CI and container image publishing
+├── archetypes/               # Hugo content archetypes
+├── assets/                   # Blowfish custom CSS and images
+├── config/_default/          # Hugo and Blowfish configuration
+├── content/                  # English and Finnish content
+├── helm/personal-blog/       # Reusable Kubernetes Helm chart
+├── i18n/                     # UI translations
+├── layouts/                  # Small theme overrides and home partials
+├── nginx/                    # nginx-unprivileged runtime config
+├── scripts/                  # Content helper scripts
+├── static/                   # Static assets copied as-is
+├── Dockerfile
+├── Makefile
+└── docker-compose.yaml
+```
+
+## Site structure
+
+The public site is compact by design:
 
 ```text
 About
@@ -23,11 +42,13 @@ Posts
 CV
 ```
 
-The landing page uses a small custom Blowfish home partial: it keeps the normal profile hero and renders selected `highlight: true` posts below it with Blowfish's own article card partial. This avoids custom card markup while still keeping a dedicated Highlights/Nostot section.
+The Kubernetes Lab is shown as a featured post on the landing page instead of being treated as a separate projects section. Detailed cluster documentation and manifests live in separate GitHub repositories.
+
+Draft posts may exist in `content/posts/`, but they are marked with `draft: true` until they are ready for the public site.
 
 ## Languages
 
-English is the primary language and is served from the site root.
+English is served from the site root. Finnish content is served from `/fi/`.
 
 ```text
 /       English
@@ -45,48 +66,14 @@ content/posts/.../index.fi.md
 
 Translations are connected with matching `translationKey` values.
 
-## Repository structure
-
-```text
-.
-├── Dockerfile
-├── Makefile
-├── README.md
-├── docker-compose.yaml
-├── go.mod
-├── go.sum
-├── archetypes/
-│   └── post-bundle/
-├── assets/
-│   ├── css/
-│   └── img/
-├── config/
-│   └── _default/
-├── content/
-│   ├── _index.en.md
-│   ├── _index.fi.md
-│   ├── about/
-│   ├── cv/
-│   └── posts/
-├── data/
-├── i18n/
-├── layouts/
-├── nginx/
-├── scripts/
-├── static/
-└── helm/
-    └── personal-blog/
-```
-
 ## Local development
 
-Install locally:
+Required tools:
 
 - Hugo extended `0.160.1`
 - Go
-- Docker
-- Helm
-- kubectl
+- Docker or another compatible container builder
+- Helm, when working on the chart
 
 Download Hugo module dependencies:
 
@@ -94,13 +81,13 @@ Download Hugo module dependencies:
 make mod
 ```
 
-Start the local Hugo development server:
+Start the local development server:
 
 ```bash
 make dev
 ```
 
-Build the static site:
+Build the static site locally:
 
 ```bash
 make build
@@ -118,42 +105,148 @@ Create a new bilingual post bundle:
 make new-post NAME=my-post
 ```
 
-`make new-note` still works as a compatibility alias, but new writing should use posts.
+`make new-note` is kept as a compatibility alias for older local habits.
 
-## Featured posts
+## Container image
 
-The landing page highlight cards are selected from posts with front matter like this:
+The production image is built in two stages:
 
-```yaml
-highlight: true
-highlightWeight: 10
+1. Hugo builds the static site.
+2. `nginxinc/nginx-unprivileged` serves the generated files on port `8080`.
+
+Build locally:
+
+```bash
+make docker-build HUGO_BASEURL=https://blog.hanhela.org/
 ```
 
-Lower `highlightWeight` values are shown first. When no highlighted posts exist, the home partial falls back to normal posts.
+Run locally:
 
-## Runtime model
+```bash
+make docker-run
+```
 
-The runtime model is intentionally simple:
+Open:
 
-1. Hugo builds the site into static files.
-2. A small nginx-unprivileged image serves the generated content on port `8080`.
-3. The Helm chart can expose the service through Service-only, Ingress or Gateway API HTTPRoute mode.
+```text
+http://localhost:8080/
+```
 
-This keeps the site stateless, easy to rebuild and suitable for GitOps-based deployment.
+The container includes a simple health endpoint:
 
-## Kubernetes Lab repositories
+```text
+/healthz
+```
 
-The public site introduces the lab as a featured post. There is intentionally no separate projects page in the navigation. The detailed implementation should live in the cluster repositories:
+## GitHub Actions
 
-- `oke-gitops-cluster` - the GitOps repository for the running OKE cluster
-- `oke-gitops-template` - a reusable template for similar OKE/GitOps environments
+The workflow in `.github/workflows/container-image.yaml` does two things:
 
-## Generated files
+1. validates the Helm chart and renders the manifests
+2. builds a multi-architecture image for `linux/amd64` and `linux/arm64`
 
-These files should not be committed:
+On pull requests the image is built but not published. On pushes to `main`, tags and manual workflow runs, the image is published to GitHub Container Registry.
+
+The published image name follows the repository name:
+
+```text
+ghcr.io/<owner>/<repo>
+```
+
+For this repository that is expected to be:
+
+```text
+ghcr.io/antief/blog
+```
+
+The workflow publishes branch, git tag and `sha-*` tags. For Kubernetes, prefer an immutable `sha-*` tag after the first test deployment works.
+
+The workflow only needs the default `GITHUB_TOKEN` with these permissions:
+
+```yaml
+permissions:
+  contents: read
+  packages: write
+```
+
+No repository secrets are required for the default build and publish path.
+
+## Helm chart
+
+The chart is intentionally generic. It can expose the site through:
+
+- a plain ClusterIP Service
+- Ingress
+- Gateway API HTTPRoute
+
+Lint the chart:
+
+```bash
+make helm-lint
+```
+
+Render it locally:
+
+```bash
+make helm-template
+```
+
+Render with Gateway API enabled:
+
+```bash
+helm template personal-blog helm/personal-blog \
+  --namespace blog \
+  -f helm/personal-blog/values-gateway-example.yaml
+```
+
+The chart defaults to:
+
+```yaml
+image:
+  repository: ghcr.io/antief/blog
+  tag: main
+```
+
+For a real GitOps deployment, override the tag from the OKE GitOps repository instead of editing the chart for each release.
+
+## Expected Kubernetes deployment model
+
+This repository owns the blog source code, container build and reusable Helm chart.
+
+The OKE GitOps repository should own the actual deployment values, namespace and Flux `HelmRelease`:
+
+```text
+blog repo
+-> GitHub Actions
+-> GHCR image
+-> OKE GitOps repo HelmRelease
+-> Envoy Gateway HTTPRoute
+-> blog.hanhela.org
+```
+
+That separation keeps this repository safe to keep public while the cluster repository remains responsible for environment-specific configuration.
+
+## Files that should not be committed
+
+Generated Hugo output and local credentials should stay out of git.
+
+Already ignored:
 
 - `public/`
 - `resources/`
 - `.hugo_build.lock`
+- `.env` and `.env.*`
+- local kubeconfig and key-like files
+- editor and OS noise
 
 `go.mod` and `go.sum` should be committed because Hugo Modules use them to lock the Blowfish theme dependency.
+
+## Public repository checklist
+
+Before pushing this repository publicly, verify that:
+
+- no real credentials, tokens or kubeconfigs are present
+- generated `public/` and `resources/` output is not tracked
+- the GHCR package is public if the cluster should pull it without an image pull secret
+- the image includes `linux/arm64`, because the OKE cluster uses Ampere A1 nodes
+- environment-specific Kubernetes values stay in the OKE GitOps repository

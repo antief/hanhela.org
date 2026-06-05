@@ -6,8 +6,8 @@ replicaCount: 2
 image:
   repository: ghcr.io/antief/blog
   pullPolicy: IfNotPresent
-  # If empty, the chart appVersion is used. Override with an immutable image tag for production releases.
-  tag: ""
+  # The workflow publishes branch, git tag and sha-* tags. Override with an immutable sha-* tag for production releases.
+  tag: "main"
 
 imagePullSecrets: []
 nameOverride: ""

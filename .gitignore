@@ -8,6 +8,17 @@
 .env.*
 !.env.example
 
+# Secrets and local credentials
+*.pem
+*.key
+*.p12
+*.kubeconfig
+kubeconfig*
+.age-key.txt
+.sops.yaml
+.direnv/
+.envrc
+
 # OS/editor noise
 .DS_Store
 Thumbs.db
