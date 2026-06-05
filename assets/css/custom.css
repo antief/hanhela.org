@@ -787,7 +787,117 @@ html.dark .article-content .overview-table td {
   color: rgb(var(--color-neutral-200));
 }
 
+/* Better column balance for four-column overview tables, such as CV tables. */
+.article-content .overview-table table:has(thead th:nth-child(4)) {
+  table-layout: fixed;
+  min-width: 0;
+}
+
+.article-content .overview-table table:has(thead th:nth-child(4)) th,
+.article-content .overview-table table:has(thead th:nth-child(4)) td {
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: manual;
+}
+
+.article-content .overview-table table:has(thead th:nth-child(4)) th:nth-child(1),
+.article-content .overview-table table:has(thead th:nth-child(4)) td:nth-child(1) {
+  width: 13%;
+  white-space: nowrap;
+  padding-left: 0;
+}
+
+.article-content .overview-table table:has(thead th:nth-child(4)) th:nth-child(2),
+.article-content .overview-table table:has(thead th:nth-child(4)) td:nth-child(2) {
+  width: 23%;
+}
+
+.article-content .overview-table table:has(thead th:nth-child(4)) th:nth-child(3),
+.article-content .overview-table table:has(thead th:nth-child(4)) td:nth-child(3) {
+  width: 25%;
+}
+
+.article-content .overview-table table:has(thead th:nth-child(4)) th:nth-child(4),
+.article-content .overview-table table:has(thead th:nth-child(4)) td:nth-child(4) {
+  width: 39%;
+  padding-right: 0;
+}
+
+/* Better column balance for three-column overview tables, such as lab tables. */
+.article-content .overview-table table:has(thead th:nth-child(3)):not(:has(thead th:nth-child(4))) {
+  table-layout: fixed;
+  min-width: 0;
+}
+
+.article-content .overview-table table:has(thead th:nth-child(3)):not(:has(thead th:nth-child(4))) th,
+.article-content .overview-table table:has(thead th:nth-child(3)):not(:has(thead th:nth-child(4))) td {
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: manual;
+}
+
+.article-content .overview-table table:has(thead th:nth-child(3)):not(:has(thead th:nth-child(4))) th:nth-child(1),
+.article-content .overview-table table:has(thead th:nth-child(3)):not(:has(thead th:nth-child(4))) td:nth-child(1) {
+  width: 21%;
+  padding-left: 0;
+}
+
+.article-content .overview-table table:has(thead th:nth-child(3)):not(:has(thead th:nth-child(4))) th:nth-child(2),
+.article-content .overview-table table:has(thead th:nth-child(3)):not(:has(thead th:nth-child(4))) td:nth-child(2) {
+  width: 28%;
+}
+
+.article-content .overview-table table:has(thead th:nth-child(3)):not(:has(thead th:nth-child(4))) th:nth-child(3),
+.article-content .overview-table table:has(thead th:nth-child(3)):not(:has(thead th:nth-child(4))) td:nth-child(3) {
+  width: 51%;
+  padding-right: 0;
+}
+
+/* Better column balance for two-column overview tables, such as GitOps layer tables. */
+.article-content .overview-table table:has(thead th:nth-child(2)):not(:has(thead th:nth-child(3))) {
+  table-layout: fixed;
+  min-width: 0;
+}
+
+.article-content .overview-table table:has(thead th:nth-child(2)):not(:has(thead th:nth-child(3))) th,
+.article-content .overview-table table:has(thead th:nth-child(2)):not(:has(thead th:nth-child(3))) td {
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: manual;
+}
+
+.article-content .overview-table table:has(thead th:nth-child(2)):not(:has(thead th:nth-child(3))) th:nth-child(1),
+.article-content .overview-table table:has(thead th:nth-child(2)):not(:has(thead th:nth-child(3))) td:nth-child(1) {
+  width: 26%;
+  white-space: nowrap;
+  padding-left: 0;
+}
+
+.article-content .overview-table table:has(thead th:nth-child(2)):not(:has(thead th:nth-child(3))) th:nth-child(2),
+.article-content .overview-table table:has(thead th:nth-child(2)):not(:has(thead th:nth-child(3))) td:nth-child(2) {
+  width: 74%;
+  padding-right: 0;
+}
+
 @media (max-width: 720px) {
+  .article-content .overview-table table:has(thead th:nth-child(4)) {
+    min-width: 42rem;
+  }
+
+  .article-content .overview-table table:has(thead th:nth-child(3)):not(:has(thead th:nth-child(4))) {
+    min-width: 36rem;
+  }
+
+  .article-content .overview-table table:has(thead th:nth-child(2)):not(:has(thead th:nth-child(3))) {
+    min-width: 30rem;
+  }
+
   .article-content table {
     display: block;
     overflow-x: auto;
