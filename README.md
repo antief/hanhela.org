@@ -7,7 +7,7 @@ The repository is intentionally kept safe to publish: site content, theme config
 The first Kubernetes deployment target is:
 
 ```text
-https://blog.hanhela.org/
+https://hanhela.org/
 ```
 
 The apex domain can be added later if the cluster Gateway and DNS setup are extended for it.
@@ -117,7 +117,7 @@ The production image is built in two stages:
 Build locally:
 
 ```bash
-make docker-build HUGO_BASEURL=https://blog.hanhela.org/
+make docker-build HUGO_BASEURL=https://hanhela.org/
 ```
 
 Run locally:

@@ -18,7 +18,7 @@ permissions:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  HUGO_BASEURL: https://blog.hanhela.org/
+  HUGO_BASEURL: https://hanhela.org/
 
 jobs:
   validate:
