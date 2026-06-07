@@ -1,5 +1,5 @@
 ---
-title: "Korkean saatavuuden testaaminen Kubernetesissa"
+title: "Korkean saatavuuden testaaminen Kubernetesissä"
 date: 2026-06-05T12:00:00+03:00
 draft: false
 highlight: true
@@ -41,7 +41,7 @@ flux get kustomizations -n flux-system
 
 Lähtötilassa kaikki näytti hyvältä: nodet olivat `Ready`, Envoy Gateway oli asetettu DaemonSetiksi, whoami-podeja oli kolme ja Longhorn-volyymit olivat terveitä.
 
-Ajoin [`whoami`](https://whoami.hanhela.org)-palvelua vasten pientä vibekoodattua curl-loopia:
+Ajoin [`whoami`](https://whoami.hanhela.org)-palvelua vasten pientä shellillä tehtyä curl-looppia:
 
 ```bash
 while true; do
@@ -78,7 +78,7 @@ Varsinainen ajo oli tämän tyyppinen:
   | tee /tmp/oke-node-replacement.log
 ```
 
-Skriptin osalta testi meni lopulta hyvin. Node vaihtui, uusi node liittyi klusteriin ja Longhorn palautui terveeksi. Vanhaan nodeen jääneet stale-replikat saatiin siivottua pois.
+Skriptin näkökulmasta vaihto valmistui onnistuneesti. Node vaihtui, uusi node liittyi klusteriin ja Longhorn palautui terveeksi. Vanhaan nodeen jääneet stale-replikat saatiin siivottua pois.
 
 Lokin lopussa näkyi se mitä hain:
 
@@ -104,7 +104,7 @@ FAIL rc=28 curl: (28) Operation timed out after 3002 milliseconds with 0 bytes r
 
 Tämä oli testin tärkein tulos. Kubernetesin näkökulmasta kaikki palautui nätisti, mutta käyttäjän näkökulmasta osa pyynnöistä epäonnistui huollon aikana.
 
-Tarkkaa syytä en pysty todistamaan pelkästään tämän testin perusteella. Oma arvaukseni on, että katkos liittyi useamman asian ajoitukseen: vanha node poistui, uusi node liittyi mukaan, OCI Network Load Balancer päivitti backendejä ja Envoy Gatewayn podit käynnistyivät uudella nodella. Uuden noden alkuvaiheessa näkyi myös Flanneliin liittyvä virhe:
+Tarkkaa syytä en pysty todistamaan pelkästään tämän testin perusteella. Oma arvaukseni on, että lyhyt katkos johtui useasta lähes samaan aikaan tapahtuneesta asiasta: vanha node poistui, uusi node liittyi mukaan, OCI Network Load Balancer päivitti backendejä ja Envoy Gatewayn podit käynnistyivät uudella nodella. Uuden noden alkuvaiheessa näkyi myös Flanneliin liittyvä virhe:
 
 ```text
 plugin type="flannel" failed (add):

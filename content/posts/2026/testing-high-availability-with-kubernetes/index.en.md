@@ -41,7 +41,7 @@ flux get kustomizations -n flux-system
 
 Everything looked as expected. The nodes were `Ready`, Envoy Gateway was running as a DaemonSet, there were three `whoami` pods, and the Longhorn volumes were healthy.
 
-Against the [`whoami`](https://whoami.hanhela.org) service I ran a small, vibe-coded curl loop:
+Against the [`whoami`](https://whoami.hanhela.org) service I ran a small shell curl loop:
 
 ```bash
 while true; do
@@ -69,7 +69,7 @@ This should show once per second whether the request returned HTTP 200 or timed 
 
 ## Replacing the node
 
-The node replacement was done with a small script that replaces one OKE node pool node at a time. Before doing anything, the script runs a dry-run, checks the target version and verifies the Longhorn state. The code is on [GitHub](https://github.com/antief/oke-gitops-cluster/tree/main/terraform/oci-oke/scripts).
+The node replacement was done with a small script that replaces one OKE node-pool node at a time. Before doing anything, the script runs a dry-run, checks the target version and verifies the Longhorn state. The code is on [GitHub](https://github.com/antief/oke-gitops-cluster/tree/main/terraform/oci-oke/scripts).
 
 The actual run looked like this:
 
@@ -78,7 +78,7 @@ The actual run looked like this:
   | tee /tmp/oke-node-replacement.log
 ```
 
-From the script's point of view the test eventually went well. The old node was replaced, the new node joined the cluster, and Longhorn returned to a healthy state. Stale replicas left behind by the removed node were cleaned up.
+From the script's point of view the replacement completed successfully. The old node was replaced, the new node joined the cluster, and Longhorn returned to a healthy state. Stale replicas left behind by the removed node were cleaned up.
 
 The end of the log showed what I was looking for:
 
@@ -104,7 +104,7 @@ FAIL rc=28 curl: (28) Operation timed out after 3002 milliseconds with 0 bytes r
 
 That was the most important result of the test. From Kubernetes' point of view everything recovered cleanly, but from the user's point of view some requests failed during the maintenance window.
 
-I cannot prove the exact cause from this test alone. My best guess is that the short interruption was caused by timing between several moving parts: the old node leaving, the new node joining, the OCI Network Load Balancer updating its backends, and Envoy Gateway pods starting on the new node. Early in the new node's lifecycle I also saw a Flannel-related error:
+I cannot prove the exact cause from this test alone. My best guess is that the short interruption came from several events happening close together: the old node leaving, the new node joining, the OCI Network Load Balancer updating its backends, and Envoy Gateway pods starting on the new node. Early in the new node's lifecycle I also saw a Flannel-related error:
 
 ```text
 plugin type="flannel" failed (add):

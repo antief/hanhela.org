@@ -16,8 +16,11 @@ params:
     headline: "Cloud native and DevOps enthusiast and a Linux nerd"
     bio: "Notes and practical writeups about Kubernetes, GitOps, Linux and cloud native infrastructure."
     links:
-      - github: "https://github.com/antief"
+      - email: "mailto:antti@hanhela.org"
       - linkedin: "https://www.linkedin.com/in/your-profile/"
+      - github: "https://github.com/antief"
+      
+      
   homepage:
     layout: custom
     showHighlights: true

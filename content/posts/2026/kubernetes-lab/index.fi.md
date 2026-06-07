@@ -21,9 +21,9 @@ showTaxonomies: true
 
 ## TL;DR
 
-Tämä on oma Kubernetes-labini [Oracle Cloudissa](https://www.oracle.com/cloud/free/). Se ei ole pelkkä paikallinen kokeilu, vaan oikeasti ajossa oleva pieni pilviympäristö, jossa harjoittelen Kubernetesia, GitOpsia, pilvi-infraa, sovellusjulkaisua, salaisuuksien hallintaa sekä mittareita ja lokitusta.
+Tämä on oma Kubernetes-labini [Oracle Cloudissa](https://www.oracle.com/cloud/free/). Se ei ole pelkkä paikallinen kokeilu, vaan oikeasti ajossa oleva pieni pilviympäristö, jossa harjoittelen Kubernetesiä, GitOpsia, pilvi-infraa, sovellusjulkaisua, salaisuuksien hallintaa sekä mittareita ja lokitusta.
 
-Klusterin infra rakennetaan OpenTofulla, ja Kubernetes-resurssit hallitaan Gitistä FluxCD:n avulla. Julkinen HTTPS-liikenne kulkee OCI Network Load Balancerin ja Envoy Gatewayn kautta. Mukana ovat myös TLS, DNS, tallennus, mittarit, lokit ja ulkoinen uptime-seuranta.
+Klusterin infra rakennetaan OpenTofun avulla, ja Kubernetes-resurssit hallitaan Gitistä FluxCD:llä. Julkinen HTTPS-liikenne kulkee OCI Network Load Balancerin ja Envoy Gatewayn kautta. Mukana ovat myös TLS, DNS, tallennus, mittarit, lokit ja ulkoinen saatavuusseuranta.
 
 Käytännössä labin tarkoitus on näyttää, miten pilvessä ajettava Kubernetes-ympäristö voidaan rakentaa toistettavasti, pitää hallinnassa GitOpsilla ja valvoa ulkopuolelta. Samalla se toimii omana harjoitusympäristönäni, jossa voin testata päivityksiä, julkaisutapoja ja inframuutoksia turvallisesti mutta realistisesti.
 
@@ -44,11 +44,11 @@ Jos haluat katsoa ympäristöä suoraan, tärkeimmät linkit ovat tässä. Koodi
 
 ## Miksi tämä lab on olemassa?
 
-Halusin ympäristön, jossa Kubernetesia ei tarvitse opetella vain yksittäisinä komentoina tai paikallisina testeinä. Tavoitteena on pitää yllä pientä mutta todellista kokonaisuutta, jossa samat perusasiat tulevat vastaan kuin isommissakin ympäristöissä: verkko, julkaisu, sertifikaatit, salaisuudet, tallennus, valvonta ja dokumentointi.
+Halusin ympäristön, jossa Kubernetesiä ei tarvitse opetella vain yksittäisinä komentoina tai paikallisina testeinä. Tavoitteena on pitää yllä pientä mutta todellista kokonaisuutta, jossa samat perusasiat tulevat vastaan kuin isommissakin ympäristöissä: verkko, julkaisu, sertifikaatit, salaisuudet, tallennus, valvonta ja dokumentointi.
 
 Oracle Kubernetes Engine sopii tähän hyvin, koska labia voi ajaa edullisesti ja joissain tapauksissa jopa ilmaiseksi. Samalla ympäristö pysyy riittävän oikeana, koska kyseessä on hallittu Kubernetes-palvelu eikä pelkkä paikallinen harjoitusklusteri.
 
-Halusin myös, että labia käytetään pääosin komentoriviltä eikä yksittäisinä klikkauksina pilven käyttöliittymässä. Pilven käyttöliittymä on toki hyödyllinen tarkistamiseen ja hallintaan, mutta tämän labin pääasiallinen työnkulku on koodin, komentorivin ja Gitin ympärillä. Klusterin voi alustaa, validoida, ajaa ylös, purkaa ja rakentaa uudelleen toistettavasti. Myös nodejen päivitys hoituu erillisellä skriptillä.
+Halusin myös, että labia hallitaan pääosin komentoriviltä eikä yksittäisinä klikkauksina pilven käyttöliittymässä. Pilven käyttöliittymä on toki hyödyllinen tarkistamiseen, mutta tämän labin pääasiallinen työnkulku rakentuu koodin, komentorivin ja Gitin ympärille. Klusterin voi alustaa, validoida, ajaa ylös, purkaa ja rakentaa uudelleen toistettavasti. Myös nodejen päivitys hoituu erillisellä skriptillä.
 
 ## Mitä tämä osoittaa?
 
@@ -68,7 +68,7 @@ Tärkeintä ei ole yksittäinen työkalu, vaan se että eri osat muodostavat toi
 
 Klusterin perusidea on yksinkertainen: infra rakennetaan koodina, sovellukset kuvataan manifesteina ja muutokset viedään sisään Gitin kautta.
 
-```go
+```text
 Muutokset:
 GitHub → FluxCD → Kubernetes-resurssit
 

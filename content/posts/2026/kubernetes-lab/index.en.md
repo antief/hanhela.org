@@ -25,7 +25,7 @@ This is my personal Kubernetes lab running on [Oracle Cloud](https://www.oracle.
 
 The infrastructure is built with OpenTofu, and Kubernetes resources are managed from Git with FluxCD. Public HTTPS traffic goes through an OCI Network Load Balancer and Envoy Gateway. TLS, DNS, storage, metrics, logs and external status monitoring are part of the same Git-managed setup.
 
-In practice, the lab shows how a cloud-based Kubernetes environment can be built repeatably, managed through GitOps and monitored from the outside. It also gives me a realistic place to test upgrades, deployment patterns and infrastructure changes without treating Kubernetes as a purely local sandbox.
+In practice, the lab shows how a cloud-based Kubernetes environment can be built in a repeatable way, managed through GitOps and monitored from the outside. It also gives me a realistic place to test upgrades, deployment patterns and infrastructure changes without treating Kubernetes as a purely local sandbox.
 
 ## Links
 
@@ -48,7 +48,7 @@ I wanted an environment where Kubernetes is not just a set of isolated commands 
 
 Oracle Kubernetes Engine is a good fit for this because it makes the lab inexpensive to run, and in some cases it can even be run for free. At the same time, the setup is still close enough to a normal cloud environment, because it runs on a managed Kubernetes service instead of a local test cluster.
 
-I also wanted the lab to be operated mostly from the command line instead of through individual clicks in a cloud console. The cloud console is still useful for inspection and management, but the main workflow for this lab is built around code, the command line and Git. The cluster can be initialized, validated, brought up, torn down and rebuilt in a repeatable way. Node updates are also handled with a separate script.
+I also wanted the lab to be operated mostly from the command line rather than through one-off clicks in a cloud console. The cloud console is still useful for inspection and management, but the main workflow for this lab is built around code, the command line and Git. The cluster can be initialized, validated, brought up, torn down and rebuilt in a repeatable way. Node updates are also handled with a separate script.
 
 ## What this demonstrates
 
@@ -68,7 +68,7 @@ The important part is not any single tool, but how the pieces work together. Inf
 
 The basic idea is simple: infrastructure is built as code, applications are described as manifests, and changes are applied through Git.
 
-```go
+```text
 Changes:
 GitHub → FluxCD → Kubernetes resources
 
