@@ -1,12 +1,13 @@
 {{- if .Values.gateway.enabled }}
-{{- $fullName := include "personal-blog.fullname" . -}}
-{{- $chartLabels := include "personal-blog.labels" . -}}
-{{- $servicePort := .Values.service.port -}}
-{{- $routes := .Values.gateway.routes | default list -}}
+{{- $fullName := include "personal-blog.fullname" . }}
+{{- $chartLabels := include "personal-blog.labels" . }}
+{{- $servicePort := .Values.service.port }}
+{{- $routes := .Values.gateway.routes | default list }}
 {{- if $routes }}
-{{- range $route := $routes }}
-{{- $routeName := required "gateway.routes[].name is required" $route.name -}}
----
+{{ range $i, $route := $routes }}
+{{ if gt $i 0 }}---
+{{ end }}
+{{ $routeName := required "gateway.routes[].name is required" $route.name }}
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -46,7 +47,7 @@ spec:
           port: {{ $servicePort }}
         {{- end }}
   {{- end }}
-{{- end }}
+{{ end }}
 {{- else }}
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
