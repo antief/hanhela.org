@@ -1,10 +1,59 @@
 {{- if .Values.gateway.enabled }}
+{{- $fullName := include "personal-blog.fullname" . -}}
+{{- $chartLabels := include "personal-blog.labels" . -}}
+{{- $servicePort := .Values.service.port -}}
+{{- $routes := .Values.gateway.routes | default list -}}
+{{- if $routes }}
+{{- range $route := $routes }}
+{{- $routeName := required "gateway.routes[].name is required" $route.name -}}
+---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: {{ include "personal-blog.fullname" . }}
+  name: {{ printf "%s-%s" $fullName $routeName | trunc 63 | trimSuffix "-" }}
   labels:
-    {{- include "personal-blog.labels" . | nindent 4 }}
+    {{- $chartLabels | nindent 4 }}
+    {{- with $route.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with $route.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  parentRefs:
+    {{- toYaml (default $.Values.gateway.parentRefs $route.parentRefs) | nindent 4 }}
+  {{- with (default $.Values.gateway.hostnames $route.hostnames) }}
+  hostnames:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- if $route.rules }}
+  rules:
+    {{- toYaml $route.rules | nindent 4 }}
+  {{- else }}
+  rules:
+    - matches:
+        {{- toYaml (default $.Values.gateway.matches $route.matches) | nindent 8 }}
+      {{- with (default $.Values.gateway.filters $route.filters) }}
+      filters:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      backendRefs:
+        {{- if $route.backendRefs }}
+        {{- toYaml $route.backendRefs | nindent 8 }}
+        {{- else }}
+        - name: {{ $fullName }}
+          port: {{ $servicePort }}
+        {{- end }}
+  {{- end }}
+{{- end }}
+{{- else }}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- $chartLabels | nindent 4 }}
   {{- with .Values.gateway.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -24,6 +73,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       backendRefs:
-        - name: {{ include "personal-blog.fullname" . }}
-          port: {{ .Values.service.port }}
+        - name: {{ $fullName }}
+          port: {{ $servicePort }}
+{{- end }}
 {{- end }}

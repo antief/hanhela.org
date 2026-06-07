@@ -100,6 +100,7 @@ ingress:
 
 gateway:
   enabled: false
+  # Simple single-route mode. Useful when one hostname points directly to the Service.
   parentRefs:
     - name: example-gateway
       namespace: default
@@ -112,6 +113,11 @@ gateway:
         value: /
   filters: []
   annotations: {}
+
+  # Multi-route mode. When this list is non-empty, the chart renders one
+  # HTTPRoute per entry. This is useful for setups such as apex hosting plus
+  # redirect-only routes for www/blog subdomains.
+  routes: []
 
 nodeSelector: {}
 tolerations: []
