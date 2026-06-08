@@ -19,7 +19,7 @@ showTableOfContents: true
 showTaxonomies: true
 ---
 
-Tämän blogin voisi julkaista paljon helpomminkin. Hugo sopii hyvin esimerkiksi GitHub Pagesiin tai Cloudflare Pagesiin, eikä staattinen sivusto tarvitse Kubernetes-klusteria ollakseen verkossa.
+Tämän blogin voisi julkaista paljon helpomminkin. Simppeli Hugo-blogi sopii hyvin esimerkiksi GitHub Pagesiin tai Cloudflare Pagesiin, eikä sen ajaminen Kubernetes-klusterissa todellakaan ole kovin järkevää korkean ylläpitokuorman takia.
 
 Tässä tapauksessa tarkoitus oli kuitenkin ajaa blogia samalla tavalla kuin muitakin klusterin pieniä palveluita. Sivusto rakennetaan kontti-imageksi, image julkaistaan GitHub Container Registryyn ja Flux asentaa sovelluksen Kubernetes-klusteriin Helm-chartin avulla.
 
@@ -83,7 +83,7 @@ values:
           - blog.example.com
 ```
 
-Sama mekanismi taipuu tarvittaessa myös apex-domainiin. Chart tukee useampaa routea, joten yksi route voi ohjata `example.com`-osoitteen Serviceen ja toinen route voi uudelleenohjata `blog.example.com`- tai `www.example.com`-osoitteet takaisin apex-domainiin. Nämä valinnat pysyvät HelmReleasen arvoissa, koska ne kuuluvat tähän klusteriin eivätkä itse sovellukseen.
+Sama mekanismi taipuu tarvittaessa myös apex-domainiin. Chart tukee useampaa routea, joten yksi route voi ohjata `example.com`-osoitteen Serviceen ja toinen route voi uudelleenohjata `blog.example.com`- tai `www.example.com`-osoitteet takaisin apex-domainiin.
 
 Tällaiselle blogille Helm ei ole teknisesti pakollinen. Yksinkertainen Deployment ja Service riittäisivät. Käytän sitä silti, koska sama malli sopii myöhemmin muihinkin sovelluksiin. Pieni blogi on hyvä paikka pitää julkaisutapa kunnossa ilman, että itse sovellus monimutkaistaa asiaa.
 
@@ -103,7 +103,7 @@ ExternalDNS tekee Cloudflareen tarvittavan DNS-recordin Kubernetes-resurssien pe
 
 ## Mitä tästä jäi käteen
 
-Tämän blogin ajaminen Kubernetesissä ei ole yritys väittää, että staattinen sivusto tarvitsee klusterin. Ei tarvitse. GitHub Pages tai Cloudflare Pages olisi monelle Hugo-blogille järkevämpi ja kevyempi ratkaisu.
+Staattinen sivusto ei tarvitse Kubernetes-klusteria, eikä tämä postaus yritä väittää muuta. Monelle Hugo-blogille GitHub Pages tai Cloudflare Pages olisi järkevämpi ja kevyempi ratkaisu.
 
 Tässä projektissa blogi toimii pienenä, julkisena sovelluksena, jolla voin harjoitella ja testata koko julkaisuputkea. Muutos lähtee Gitistä, image rakentuu automaattisesti, Flux vie sen klusteriin ja liikenne ohjautuu Gatewayn kautta ulos.
 

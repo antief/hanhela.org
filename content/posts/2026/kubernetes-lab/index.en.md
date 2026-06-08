@@ -21,15 +21,15 @@ showTaxonomies: true
 
 ## TL;DR
 
-This is my personal Kubernetes lab running on [Oracle Cloud](https://www.oracle.com/cloud/free/). It is not just a local test setup, but a small live cloud environment where I practice Kubernetes, GitOps, cloud infrastructure, application delivery, secrets management, metrics and logging.
+This is my personal Kubernetes lab running on [Oracle Cloud](https://www.oracle.com/cloud/free/). It is not just a local test setup, but a small live cloud environment where I practice all things Kubernetes.
 
 The infrastructure is built with OpenTofu, and Kubernetes resources are managed from Git with FluxCD. Public HTTPS traffic goes through an OCI Network Load Balancer and Envoy Gateway. TLS, DNS, storage, metrics, logs and external status monitoring are part of the same Git-managed setup.
 
-In practice, the lab shows how a cloud-based Kubernetes environment can be built in a repeatable way, managed through GitOps and monitored from the outside. It also gives me a realistic place to test upgrades, deployment patterns and infrastructure changes without treating Kubernetes as a purely local sandbox.
+In practice, the lab shows how a cloud-based Kubernetes environment can be built repeatably, managed through GitOps and monitored from the outside. It also gives me a realistic place to test upgrades, deployment patterns and infrastructure changes without treating Kubernetes as a purely local sandbox.
 
 ## Links
 
-If you want to inspect the environment directly, these are the main entry points. The repositories show how the lab is built, Grafana exposes selected metrics and the status page shows external availability monitoring.
+If you want to explore the environment in more detail, here are the most important links. The repositories show how the lab is built, Grafana exposes selected metrics and the status page shows external availability monitoring.
 
 {{< overview-table >}}
 
@@ -48,7 +48,7 @@ I wanted an environment where Kubernetes is not just a set of isolated commands 
 
 Oracle Kubernetes Engine is a good fit for this because it makes the lab inexpensive to run, and in some cases it can even be run for free. At the same time, the setup is still close enough to a normal cloud environment, because it runs on a managed Kubernetes service instead of a local test cluster.
 
-I also wanted the lab to be operated mostly from the command line rather than through one-off clicks in a cloud console. The cloud console is still useful for inspection and management, but the main workflow for this lab is built around code, the command line and Git. The cluster can be initialized, validated, brought up, torn down and rebuilt in a repeatable way. Node updates are also handled with a separate script.
+I also wanted the lab to be operated mostly from the command line instead of through individual clicks in a cloud console. The cloud console is still useful for inspection and management, but the main workflow for this lab is built around code, the command line and Git. The cluster can be initialized, validated, brought up, torn down and rebuilt in a repeatable way. Node updates are also handled with a separate script.
 
 ## What this demonstrates
 
@@ -68,7 +68,7 @@ The important part is not any single tool, but how the pieces work together. Inf
 
 The basic idea is simple: infrastructure is built as code, applications are described as manifests, and changes are applied through Git.
 
-```text
+```go
 Changes:
 GitHub → FluxCD → Kubernetes resources
 
@@ -81,8 +81,6 @@ Changes are made in Git first. FluxCD watches the repository and moves the clust
 This keeps application delivery and traffic routing as separate but understandable parts of the same system.
 
 ## Core components
-
-You do not need to know every component in advance. The main point is that each part has a clear job: infrastructure is built as code, traffic is routed in a controlled way, secrets are kept out of manifests, and the environment is monitored both from the inside and the outside.
 
 {{< overview-table >}}
 
@@ -102,37 +100,36 @@ You do not need to know every component in advance. The main point is that each 
 
 ## GitOps workflow
 
-Changes are made in [GitHub](https://github.com/antief/oke-gitops-cluster) first. FluxCD watches the repository and keeps the cluster aligned with the desired state described there.
+Changes are made in [GitHub](https://github.com/antief/oke-gitops-cluster) first. Flux watches the repository and keeps the cluster aligned with the desired state described there.
 
-In practice, a new service is added by creating the manifests in the repository and merging the change through Git. Once the change reaches the main branch, FluxCD detects it and starts reconciling the cluster towards the new state. If something goes wrong, the issue is visible both in Flux status and in the monitoring tools.
+In practice, a new service is added by creating its manifests in the repository and merging the change to the main branch. Once the change is merged, Flux detects it and starts reconciling the cluster toward the new state. If something goes wrong, it shows up in both Flux status and the monitoring tools.
 
-The repository is split into two main sides. The `terraform/` directory contains the infrastructure side of the lab: base cloud resources, the OKE cluster itself and the Flux bootstrap. The `gitops/` directory contains the Kubernetes side: cluster-specific configuration, infrastructure controllers, add-ons and application manifests.
+The repository is split mainly into two parts. `terraform/` contains the infrastructure side of the lab: the base cloud resources, the OKE cluster and the Flux installation. `gitops/` contains the Kubernetes side: cluster-specific settings, infrastructure controllers, addons and application manifests.
 
-The Kubernetes side of the repository is split into layers:
+With Flux, the repository structure is flexible as long as the Flux Kustomizations point to the right paths (read more in the Flux [documentation](https://fluxcd.io/flux/guides/repository-structure/)). In this repository, the cluster-specific `clusters` directory collects the Kustomizations for this environment, and the actual cluster content is split into four layers.
 
 {{< overview-table >}}
 
 | Part | Description |
 |---|---|
 | Controllers | Cluster controllers such as cert-manager, Envoy Gateway, External Secrets Operator, Longhorn and metrics-server. |
-| Configs | Configuration used by those controllers, such as Gateways, ClusterIssuers, ExternalSecrets and StorageClasses. |
-| Addons | Supporting components such as ExternalDNS, kube-prometheus-stack, Loki, Alloy and the Better Stack heartbeat. |
-| Apps | The actual applications and test services. |
+| Configs | Configuration used by the controllers, such as Gateways, ClusterIssuers, ExternalSecrets and StorageClasses. |
+| Addons | Supporting components such as ExternalDNS, kube-prometheus-stack, Loki, Alloy and Better Stack heartbeat. |
+| Apps | Actual applications and test services. |
 
 {{< /overview-table >}}
 
-This keeps the dependencies fairly clear. Controllers are installed first, then their configuration, then supporting add-ons and finally the applications.
+This keeps the dependencies clear. Controllers are installed first, then their configuration, then supporting addons and finally the applications.
 
 ## Template repository
 
-The main cluster repository describes my own running environment. Alongside it, I created a separate [OKE GitOps template](https://github.com/antief/oke-gitops-template), which is a cleaner starting point for building a similar cluster.
+The actual cluster repository describes my own running environment. Alongside it, I made a separate [OKE GitOps template](https://github.com/antief/oke-gitops-template), which works as a cleaner starting point for building a similar cluster.
 
-The template does not try to hide everything behind automation. The point is that the structure remains understandable: what OpenTofu builds, what FluxCD installs into the cluster and how the different layers fit together.
+The template is not meant to be a black box. The structure should make it visible what OpenTofu builds, what Flux installs into the cluster and how the different layers fit together.
 
 ## Scope
 
-This is a personal lab, not a finished production platform. I keep it intentionally limited so that it stays maintainable and useful as a learning environment.
+This is a personal lab, not a finished production platform. I keep the environment deliberately small so that I can understand it, maintain it and document it properly.
 
-The scope is intentional. A small environment is easier to keep understandable, documented and genuinely maintainable. That makes it a better learning environment than a large collection of unrelated services.
+The repository is useful as a reference, but it is not meant to be copied blindly into production. It reflects my own learning environment, tradeoffs and constraints. Use the ideas, not the exact setup.
 
-The goal is not to run as many services as possible. The goal is to keep a setup where cloud infrastructure, Kubernetes, GitOps, application delivery, metrics, logs and documentation support each other.

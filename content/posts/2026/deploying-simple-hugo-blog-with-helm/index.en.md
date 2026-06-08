@@ -83,7 +83,7 @@ values:
           - blog.example.com
 ```
 
-The same mechanism can also handle an apex domain. In my setup, one route can point the apex domain to the blog Service, while another route redirects `blog.example.com` or `www.example.com` back to the apex domain. Those choices stay in the HelmRelease values because they belong to this cluster rather than the application itself.
+The same mechanism can also handle an apex domain. In my setup, one route can point the apex domain to the blog Service, while another route redirects `blog.example.com` or `www.example.com` back to the apex domain.
 
 Helm is not strictly required for a blog like this. A simple Deployment and Service would work. I still use it because the same pattern is useful for other applications later. A small blog is a good place to keep the deployment model in shape without the application itself getting in the way.
 
@@ -103,7 +103,7 @@ ExternalDNS creates the required DNS record in Cloudflare based on Kubernetes re
 
 ## What I got out of it
 
-Running this blog on Kubernetes is not an argument that every static site needs a cluster. It does not. GitHub Pages or Cloudflare Pages would be a lighter and more sensible option for many Hugo blogs.
+A static site does not need a Kubernetes cluster, and this post is not trying to argue otherwise. For many Hugo blogs, GitHub Pages or Cloudflare Pages would be a simpler and lighter option.
 
 In this project, the blog is a small public application that lets me test the whole deployment path. A change starts in Git, the image builds automatically, Flux applies it to the cluster, and traffic is routed out through the Gateway.
 
