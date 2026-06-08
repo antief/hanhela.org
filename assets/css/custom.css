@@ -48,13 +48,13 @@ body {
 /* 2. Text selection */
 
 ::selection {
-  background-color: rgb(var(--color-primary-700));
+  background-color: rgb(104, 157, 106); /* Gruvbox neutral aqua */
   color: rgb(251, 241, 199); /* Gruvbox light bg0 */
 }
 
 html.dark ::selection {
-  background-color: rgb(var(--color-primary-400));
-  color: rgb(40, 40, 40); /* Gruvbox dark bg0 */
+  background-color: rgb(66, 123, 88); /* Gruvbox dark aqua */
+  color: rgb(235, 219, 178); /* Gruvbox fg1 */
 }
 
 /* 3. Search overlay colors: dark Gruvbox variants */
