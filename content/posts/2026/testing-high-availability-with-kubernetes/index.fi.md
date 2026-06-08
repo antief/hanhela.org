@@ -7,8 +7,8 @@ highlightWeight: 30
 weight: 30
 slug: "korkean-saatavuuden-testaaminen-kubernetesissa"
 translationKey: "testing-high-availability-with-kubernetes"
-description: "Käytännön testi siitä, miten pieni OKE-klusteri selviää worker-noden vaihdosta julkisen liikenteen näkökulmasta."
-summary: "Realistinen HA-testi Oracle Kubernetes Engine -klusterissa: node vaihtui onnistuneesti, mutta täysin katkoton julkinen liikenne osoittautui vaikeammaksi kuin aluksi näytti."
+summary: "Yksinkertainen OKE-klusterissa tehtävä saatavuustesti, jossa tarkasteltiin noden poistumisen vaikutusta julkiseen blogipalveluun." 
+description: "Kuvaus OKE-klusterissa tehdystä saatavuustestistä, jossa tarkasteltiin, miten noden poistuminen vaikuttaa Kubernetesissä ajettavaan julkiseen blogipalveluun."
 tags:
   - Kubernetes
   - High Availability

@@ -1,14 +1,15 @@
 ---
 title: "Kubernetes Lab"
 draft: false
-showDate: false
+date: 2026-06-04T12:00:00+03:00
+showDate: true
 highlight: true
 highlightWeight: 10
 weight: 1
 slug: "kubernetes-lab"
 translationKey: "kubernetes-lab"
-description: "Käytännön Kubernetes- ja GitOps-ympäristö Oracle Kubernetes Enginen päällä."
-summary: "OKE-pohjainen Kubernetes- ja GitOps-lab, jossa on Gateway API -pohjainen HTTPS-reititys, TLS, mittarit, lokit ja julkinen tilaseuranta."
+description: "Kuvaus Oracle Kubernetes Enginen päälle rakennetusta Kubernetes-labista, jossa GitOps, Gateway API, observability ja julkiset testipalvelut muodostavat harjoitteluympäristön."
+summary: "OKE-pohjainen Kubernetes-lab, jossa käytetään GitOpsia, Gateway API:a, observability-työkaluja ja muutamia julkisia testipalveluita."
 tags:
   - Kubernetes
   - OKE

@@ -14,7 +14,7 @@ header:
 highlightCurrentMenuArea: true
 
 footer:
-  showCopyright: false
+  showCopyright: true
   showThemeAttribution: true
   showAppearanceSwitcher: true
   showScrollToTop: true
@@ -41,7 +41,7 @@ article:
 
 list:
   showBreadcrumbs: false
-  showSummary: false
+  showSummary: true
   showTableOfContents: false
   showTaxonomies: true
   cardView: true

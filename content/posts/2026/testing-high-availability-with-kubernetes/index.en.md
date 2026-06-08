@@ -7,8 +7,8 @@ highlightWeight: 30
 weight: 30
 slug: "testing-high-availability-in-kubernetes"
 translationKey: "testing-high-availability-with-kubernetes"
-description: "A practical test of how a small OKE cluster handles replacing a worker node from the point of view of public traffic."
-summary: "A realistic HA test in Oracle Kubernetes Engine: the node replacement worked, but fully uninterrupted public traffic was harder than it first looked."
+summary: "A simple availability test in an OKE cluster, looking at how losing a node affects a public blog service." 
+description: "A description of an availability test in an OKE cluster, looking at how losing a node affects a public blog service running in Kubernetes."
 tags:
   - Kubernetes
   - High Availability

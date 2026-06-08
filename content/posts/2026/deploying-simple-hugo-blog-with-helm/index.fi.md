@@ -1,6 +1,6 @@
 ---
 title: "Hugo-blogin ajaminen Kubernetesissä Helmillä ja GitOpsilla"
-date: 2026-06-06T21:00:00+03:00
+date: 2026-06-08T21:00:00+03:00
 draft: false
 highlight: true
 highlightWeight: 40
@@ -8,7 +8,7 @@ weight: 20
 slug: "hugo-blogin-julkaisu-kubernetesiin-helmilla-ja-gitopsilla"
 translationKey: "deploying-simple-hugo-blog-with-helm"
 description: "Yksinkertainen kuvaus siitä, miten tämä Hugo-blogi rakennetaan kontti-imageksi ja ajetaan Kubernetesissä Helmin ja Fluxin avulla."
-summary: "Miten Hugo-blogi kulkee lähdekoodista kontti-imageksi, Helm-chartiksi ja lopulta Fluxin hallitsemaksi sovellukseksi Kubernetes-klusteriin."
+summary: "Kuvaus siitä, miten tämä Hugo-blogi paketoidaan kontti-imageksi, julkaistaan Helm-chartilla ja ajetaan Kubernetesissä Fluxin hallitsemana sovelluksena."
 tags:
   - Hugo
   - Helm

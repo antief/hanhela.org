@@ -7,8 +7,8 @@ highlightWeight: 40
 weight: 20
 slug: "deploying-a-hugo-blog-to-kubernetes-with-helm-and-gitops"
 translationKey: "deploying-simple-hugo-blog-with-helm"
-description: "A simple explanation of how this Hugo blog is built as a container image and run on Kubernetes with Helm and Flux."
-summary: "How a Hugo blog moves from source code to a container image, a Helm chart and finally a Flux-managed application in Kubernetes."
+summary: "A description of how this Hugo blog is packaged as a container image, published with a Helm chart and run in Kubernetes as a Flux-managed application." 
+description: "A description of packaging this Hugo blog as a container image, publishing it with a Helm chart and running it in a Kubernetes cluster as a Flux-managed application."
 tags:
   - Hugo
   - Helm

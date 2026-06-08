@@ -1,14 +1,15 @@
 ---
 title: "Kubernetes Lab"
 draft: false
-showDate: false
+date: 2026-06-04T12:00:00+03:00
+showDate: true
 highlight: true
 highlightWeight: 10
 weight: 1
 slug: "kubernetes-lab"
 translationKey: "kubernetes-lab"
-description: "A practical Kubernetes and GitOps environment running on Oracle Kubernetes Engine."
-summary: "An OKE-based Kubernetes and GitOps lab with Gateway API-based HTTPS routing, TLS, metrics, logs and public status monitoring."
+summary: "An OKE-based Kubernetes lab using GitOps, Gateway API, observability tools and a few public test services." 
+description: "A description of a Kubernetes lab built on Oracle Kubernetes Engine, where GitOps, Gateway API, observability and public test services form a practical learning environment."
 tags:
   - Kubernetes
   - OKE
@@ -68,7 +69,7 @@ The important part is not any single tool, but how the pieces work together. Inf
 
 The basic idea is simple: infrastructure is built as code, applications are described as manifests, and changes are applied through Git.
 
-```go
+```text
 Changes:
 GitHub → FluxCD → Kubernetes resources
 
